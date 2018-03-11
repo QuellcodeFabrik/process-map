@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ProcessDefinition } from '@/contracts';
+import { ProcessStep } from '@/contracts';
 
 declare var window: {
   [key: string]: any; // add missing index definition
@@ -9,7 +9,7 @@ declare var window: {
 
 declare module 'vue/types/vue' {
   interface Vue {
-    getProcessDefinition(): Promise<ProcessDefinition[]>;
+    getProcessDefinition(): Promise<ProcessStep[]>;
   }
 }
 
@@ -39,9 +39,9 @@ const ApiMixin = {
      * Retrieves the process definition data and transforms it into a suitable
      * format that is being used in all components.
      *
-     * @returns {Promise<any>}
+     * @returns {Promise<ProcessStep[]>}
      */
-    getProcessDefinition(): Promise<ProcessDefinition[]> {
+    getProcessDefinition(): Promise<ProcessStep[]> {
       const url = '_api/web/lists/GetByTitle(\'ProcessDefinition\')/items?' +
         '$select=Id,ProcessType';
 

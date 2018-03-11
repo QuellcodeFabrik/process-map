@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { ProcessDefinition } from '../contracts';
+import { ProcessStep } from '../contracts';
 import ApiMixin from '../utils/api.utils';
 
 @Component({
@@ -30,7 +30,7 @@ export default class HelloWorld extends Vue {
    * @returns {string}
    */
   private testMe(): string {
-    this.getProcessDefinition().then((result: ProcessDefinition[]) => {
+    this.getProcessDefinition().then((result: ProcessStep[]) => {
       this.$log.debug(result);
     }).catch((err: Error) => {
       this.$log.error('Could not retrieve process definition:', err.message);
