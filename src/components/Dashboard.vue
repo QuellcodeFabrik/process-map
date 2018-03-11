@@ -17,7 +17,7 @@ import ApiMixin from '../utils/api.utils';
 
 @Component({
   created() {
-    console.log('HelloWorld Component loaded.');
+    this.$log.info('Dashboard Component loaded.');
   },
   mixins: [ApiMixin]
 })
@@ -31,9 +31,9 @@ export default class HelloWorld extends Vue {
    */
   private testMe(): string {
     this.getProcessDefinition().then((result: ProcessDefinition[]) => {
-      console.log(result);
+      this.$log.debug(result);
     }).catch((err: Error) => {
-      console.error('Could not retrieve process definition:', err.message);
+      this.$log.error('Could not retrieve process definition:', err.message);
     });
     return 'Test string';
   }

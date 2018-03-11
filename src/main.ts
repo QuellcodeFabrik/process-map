@@ -1,9 +1,12 @@
 import Vue from 'vue';
 import App from './App.vue';
+import { Logger } from './utils/logger.utils';
 import router from './utils/router.utils';
 import store from './utils/store.utils';
 
 Vue.config.productionTip = false;
+
+Logger.init();
 
 new Vue({
   router,
@@ -11,9 +14,9 @@ new Vue({
 
   created() {
     if (window.hasOwnProperty('_spPageContextInfo')) {
-      console.log('Application running in a SharePoint context!');
+      this.$log.info('Application running in SharePoint context!');
     } else {
-      console.log('Application running in a standalone context!');
+      this.$log.info('Application running in standalone context!');
     }
   },
 

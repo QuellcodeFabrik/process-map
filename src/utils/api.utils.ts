@@ -2,7 +2,7 @@ import axios from 'axios';
 import { ProcessDefinition } from '@/contracts';
 
 declare var window: {
-  [key:string]: any; // add missing index definition
+  [key: string]: any; // add missing index definition
   prototype: Window;
   new(): Window;
 };
@@ -31,7 +31,7 @@ const SharePointApi = axios.create({
 
 const ApiMixin = {
   created() {
-    console.log('API Mixin loaded.');
+    this.$log.debug('API Mixin loaded.');
   },
 
   methods: {
