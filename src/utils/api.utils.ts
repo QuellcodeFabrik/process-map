@@ -9,15 +9,15 @@ declare var window: {
 
 declare module 'vue/types/vue' {
   interface Vue {
-    getProcessDefinition(): string;
+    getProcessDefinition(): Promise<ProcessDefinition[]>;
   }
 }
 
 let baseUrl;
 if (window.hasOwnProperty('_spPageContextInfo')) {
-  baseUrl = 'http://localhost:8000/';
-} else {
   baseUrl = window.PROCESS_DEFINITION_LIST || 'http://sps2013dev.evocom.de/sites/amgcollab/';
+} else {
+  baseUrl = 'http://localhost:8000/';
 }
 
 const SharePointApi = axios.create({
