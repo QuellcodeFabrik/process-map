@@ -13,10 +13,10 @@ export enum ProcessType {
  * The data structure representing a process that has to be visualized.
  */
 export interface Process {
-  id: number;
+  id: string;
   title: string;
   type: ProcessType;
-  steps: ProcessStep[] | ProcessStep[][];
+  steps: ProcessStep[];
 }
 
 /**
@@ -24,10 +24,10 @@ export interface Process {
  * getting visualized on the process map.
  */
 export interface ProcessStep {
-  id: number;
+  id: string;
   title: string;
   label: string;
   url: string;
   showOnMap: true;
-  subProcess: Process;
+  subProcess?: Process;
 }
