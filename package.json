@@ -1,7 +1,7 @@
 {
-  "name": "prozess-landkarte",
+  "name": "process-map",
   "version": "0.1.0",
-  "private": true,
+  "description": "A Vue.js based web app that helps to visualise process maps on SharePoint.",
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
@@ -34,5 +34,9 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/QuellcodeFabrik/process-map.git"
+  }
 }

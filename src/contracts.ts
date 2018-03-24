@@ -4,9 +4,9 @@
  * and core processes in the center of the process map.
  */
 export enum ProcessType {
-  Core,
-  Support,
-  Management
+  Core = 1,
+  Support = 2,
+  Management = 3
 }
 
 /**
