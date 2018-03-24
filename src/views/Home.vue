@@ -98,7 +98,7 @@ export default class Home extends Vue {
       display: block;
       width: 80%;
       max-width: 1024px;
-      padding: 2em;
+      padding: 1em 2em 2em 2em;
       margin: 0 auto;
       background-color: rgba(0, 250, 168, 0.38);
 
