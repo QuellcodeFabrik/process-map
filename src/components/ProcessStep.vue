@@ -1,5 +1,7 @@
 <template>
-  <div class="evo-process-step" v-bind:class="{ 'is-stacked': isStackedStep() }">
+  <div class="evo-process-step"
+       v-bind:class="{ 'is-stacked': isStackedStep() }"
+       v-on:click="triggerStepAction()">
     {{ step.title }}
     <span class="evo-process-step__label">{{ step.label }}</span>
   </div>
@@ -25,8 +27,23 @@
      *
      * @returns {boolean}
      */
-    private isStackedStep() {
+    private isStackedStep(): boolean {
       return this.step.position.indexOf('.') > -1;
+    }
+
+    /**
+     * If process has a sub-process defined, a sub-process modal will be shown.
+     * Else the link that is part of the step will be opened in a new tab.
+     */
+    private triggerStepAction(): void {
+      if (this.step.subProcess) {
+        // TODO implement modal behaviour
+        alert('Not yet implemented.');
+      } else if (this.step.url) {
+        window.open(this.step.url, '_blank');
+      } else {
+        this.$log.error('The process step has neither a URL nor a sub-process.');
+      }
     }
   }
 </script>
@@ -41,6 +58,7 @@
     background-color: whitesmoke;
     margin-right: 0.5em;
     vertical-align: top;
+    cursor: pointer;
 
     &.is-stacked {
       height: $step-height / 2 - 0.25em;
