@@ -8,7 +8,7 @@ declare module 'vue/types/vue' {
 }
 
 const options = {
-  logLevel : 'debug', // ['debug', 'info', 'warn', 'error', 'fatal']
+  logLevel : 'info', // ['debug', 'info', 'warn', 'error', 'fatal']
   stringifyArguments : false,
   showLogLevel : false,
   showMethodName : false,

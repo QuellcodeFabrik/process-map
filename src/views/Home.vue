@@ -74,16 +74,22 @@ export default class Home extends Vue {
 
   /**
    * Returns the process structure for the process type given as argument.
+   * If the title is also given, it matches the title as well. This feature is
+   * especially useful when rendering more than one process of a type.
    *
    * @param {ProcessType} processType
+   * @param {string} title
    * @returns {Process | undefined}
    */
-  private getProcessData(processType: ProcessType): Process | undefined {
+  private getProcessData(processType: ProcessType, title?: string): Process | undefined {
     if (!this.processDefinitions) {
       return undefined;
     }
 
     return this.processDefinitions.filter((process: Process) => {
+      if (title !== undefined && process.title !== title) {
+        return false;
+      }
       return process.type === processType;
     })[0];
   }

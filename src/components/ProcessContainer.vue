@@ -62,7 +62,7 @@
     }
 
     private created() {
-      this.$log.info('Process Container Component loaded.');
+      this.$log.debug('Process Container Component loaded.');
     }
   }
 </script>
