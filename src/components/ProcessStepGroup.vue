@@ -37,6 +37,11 @@
 
     &__step {
       display: block;
+      z-index: 2;
+
+      &:first-of-type {
+        z-index: 3;
+      }
     }
   }
 </style>

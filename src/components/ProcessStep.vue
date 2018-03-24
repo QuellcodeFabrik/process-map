@@ -1,21 +1,39 @@
 <template>
   <div class="evo-process-step"
        v-bind:class="{ 'is-stacked': isStackedStep() }"
-       v-on:click="triggerStepAction()">
+       v-on:click="triggerStepAction()"
+       @mouseover="showSubProcess = true"
+       @mouseleave="showSubProcess = false">
     {{ step.title }}
     <span class="evo-process-step__label">{{ step.label }}</span>
+    <transition appear>
+      <div v-if="showSubProcess && step.subProcess" class="evo-process-step__sub-process">
+        <sub-process-view :process="step.subProcess"></sub-process-view>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script lang="ts">
   import { Component, Prop, Vue } from 'vue-property-decorator';
   import { ProcessStep as Step } from '../contracts';
+  import SubProcessView from '@/components/SubProcessView.vue';
 
   @Component({
-    name: 'process-step'
+    name: 'process-step',
+    components: {
+      SubProcessView
+    }
   })
   export default class ProcessStep extends Vue {
     @Prop() private step: Step;
+
+    private showSubProcess: boolean;
+
+    constructor() {
+      super();
+      this.showSubProcess = false;
+    }
 
     private created() {
       this.$log.debug('Process Step Component loaded.');
@@ -52,6 +70,7 @@
   $step-height: 5em;
 
   .evo-process-step {
+    position: relative;
     padding: 0 2em;
     height: $step-height;
     line-height: $step-height;
@@ -63,11 +82,19 @@
     &.is-stacked {
       height: $step-height / 2 - 0.25em;
       line-height: $step-height / 2 - 0.25em;
+      overflow: visible;
       margin-bottom: 0.5em;
     }
 
     &__label {
 
+    }
+
+    &__sub-process {
+      position: absolute;
+      top: -0.5em;
+      left: -0.5em;
+      right: -0.5em;
     }
   }
 </style>
