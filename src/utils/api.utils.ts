@@ -63,6 +63,7 @@ export default class ApiMixin extends Vue {
 
         processMapping[processId].steps.push({
           id: processStepItem.StepId,
+          position: processStepItem.StepOrder,
           title: processStepItem.Title,
           label: processStepItem.ProcessLabel,
           url: processStepItem.ReferenceUrl ?

@@ -205,7 +205,7 @@ const processDefinitionList = {
                 "StepId": "10.4",
                 "Title": "Produktion",
                 "StepLabel": null,
-                "StepOrder": "4",
+                "StepOrder": "4.1",
                 "ReferenceUrl": {
                     "__metadata": {
                         "type": "SP.FieldUrlValue"
@@ -216,6 +216,32 @@ const processDefinitionList = {
                 "ShowOnProcessMap": true,
                 "SubProcessId": null,
                 "ID": 8
+            },
+            {
+                "__metadata": {
+                    "id": "9be3888b-d68b-4450-94e1-810f583e7edf",
+                    "uri": "https://evocomcloud.sharepoint.com/sites/DemoApps/qm/_api/Web/Lists(guid'5b44e241-a144-4d36-a127-9f34df7e400a')/Items(15)",
+                    "etag": "\"1\"",
+                    "type": "SP.Data.ProcessDefinitionListItem"
+                },
+                "Id": 15,
+                "ProcessId": "10",
+                "ProcessTitle": "Kernprozess",
+                "ProcessType": "Core",
+                "StepId": "10.4.1",
+                "Title": "Outsourcing",
+                "StepLabel": null,
+                "StepOrder": "4.2",
+                "ReferenceUrl": {
+                    "__metadata": {
+                        "type": "SP.FieldUrlValue"
+                    },
+                    "Description": "Ergebnisseite",
+                    "Url": "https://evocomcloud.sharepoint.com/sites/DemoApps/qm/SitePages/Prozessansicht.aspx?ProcGUID=158c79cc-47cb-4b90-933c-31f4e46bda0f"
+                },
+                "ShowOnProcessMap": true,
+                "SubProcessId": null,
+                "ID": 15
             },
             {
                 "__metadata": {

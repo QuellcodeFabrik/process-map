@@ -25,6 +25,7 @@ export interface Process {
  */
 export interface ProcessStep {
   id: string;
+  position: string;
   title: string;
   label: string;
   url: string;

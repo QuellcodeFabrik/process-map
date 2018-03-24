@@ -1,19 +1,19 @@
 <template>
   <div class="evo-process-map">
-    <div class="evo-process-map__management-process">
+    <div class="evo-process-map-item">
       <process-container
           title="Managementprozesse"
-          :process-structure="getProcessStructure(3)"></process-container>
+          :process="getProcessData(3)"></process-container>
     </div>
-    <div class="evo-process-map__core-process">
+    <div class="evo-process-map-item evo-process-map-item__with-space">
       <process-container
           title="Kernprozesse"
-          :process-structure="getProcessStructure(1)"></process-container>
+          :process="getProcessData(1)"></process-container>
     </div>
-    <div class="evo-process-map__support-process">
+    <div class="evo-process-map-item">
       <process-container
           title="Unterstützende Prozesse"
-          :process-structure="getProcessStructure(2)"></process-container>
+          :process="getProcessData(2)"></process-container>
     </div>
     <div class="evo-process-map__side-bar-left">
       Kundenanforderungen
@@ -33,8 +33,7 @@ import ProcessContainer from '@/components/ProcessContainer.vue';
 import ApiMixin from '../utils/api.utils';
 
 Component.registerHooks([
-  'beforeRouteEnter',
-  'beforeRouteLeave'
+  'beforeRouteEnter'
 ]);
 
 @Component({
@@ -45,13 +44,25 @@ Component.registerHooks([
 })
 export default class Home extends Vue {
   private processDefinitions: Process[];
+  private loading: boolean;
+
+  constructor() {
+    super();
+
+    this.processDefinitions = [];
+    this.loading = true;
+  }
 
   private created() {
     this.getProcessDefinition().then((result: Process[]) => {
       this.$log.info('Result coming from API:');
       this.$log.info(result);
 
-      this.processDefinitions = result;
+      // this.processDefinitions = result;
+      result.forEach((process: Process) => {
+        this.processDefinitions.push(process);
+      });
+      this.loading = false;
     }).catch((err: Error) => {
       this.$log.error(err);
     });
@@ -67,7 +78,7 @@ export default class Home extends Vue {
    * @param {ProcessType} processType
    * @returns {Process | undefined}
    */
-  private getProcessStructure(processType: ProcessType): Process | undefined {
+  private getProcessData(processType: ProcessType): Process | undefined {
     if (!this.processDefinitions) {
       return undefined;
     }
@@ -83,31 +94,17 @@ export default class Home extends Vue {
   .evo-process-map {
     position: relative;
 
-    &__management-process {
+    &-item {
       display: block;
       width: 80%;
-      max-width: 840px;
+      max-width: 1024px;
+      padding: 2em;
       margin: 0 auto;
-      padding: 2em;
       background-color: rgba(0, 250, 168, 0.38);
-    }
 
-    &__core-process {
-      display: block;
-      width: 80%;
-      max-width: 840px;
-      margin: 2em auto;
-      padding: 2em;
-      background-color: rgba(0, 250, 168, 0.38);
-    }
-
-    &__support-process {
-      display: block;
-      width: 80%;
-      max-width: 840px;
-      margin: 0 auto;
-      padding: 2em;
-      background-color: rgba(0, 250, 168, 0.38);
+      &__with-space {
+        margin: 2em auto;
+      }
     }
 
     &__side-bar-left {
