@@ -4,6 +4,7 @@
         v-for="step in steps"
         :key="step.id"
         :step="step"
+        :type="stepType"
         class="evo-process-step-group__step">
     </process-step>
   </div>
@@ -12,7 +13,7 @@
 <script lang="ts">
   import { Component, Prop, Vue } from 'vue-property-decorator';
   import ProcessStep from '@/components/ProcessStep.vue';
-  import { ProcessStep as Step} from '../contracts';
+  import { ProcessStep as Step, StepType } from '../contracts';
 
   @Component({
     name: 'process-step-group',
@@ -22,6 +23,7 @@
   })
   export default class ProcessStepGroup extends Vue {
     @Prop() private steps: Step[];
+    @Prop() private stepType: number;
 
     private created() {
       this.$log.debug('Process Step Group Component loaded.');

@@ -1,20 +1,22 @@
 <template>
   <div class="evo-process-container">
-    <h2>{{ title }}</h2>
+    <h2 v-if="titlePosition === 'top'">{{ title }}</h2>
     <div v-if="processStepGroups" class="evo-process-steps__list">
       <process-step-group
           v-for="stepGroups in processStepGroups"
           :steps="stepGroups"
+          :step-type="stepType"
           class="evo-process-steps__item">
       </process-step-group>
     </div>
+    <h2 v-if="titlePosition === 'bottom'">{{ title }}</h2>
   </div>
 </template>
 
 <script lang="ts">
   import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
   import ProcessStepGroup from '@/components/ProcessStepGroup.vue';
-  import { Process, ProcessStep } from '../contracts';
+  import {Process, ProcessStep, ProcessType, StepType} from '../contracts';
 
   @Component({
     name: 'process-container',
@@ -24,19 +26,26 @@
   })
   export default class ProcessContainer extends Vue {
     @Prop() private title: string;
+    @Prop() private titlePosition: string;
     @Prop() private process: Process;
 
     private processStepGroups: ProcessStep[][];
+    private stepType: StepType;
 
     constructor() {
       super();
       this.processStepGroups = [];
+      this.stepType = StepType.Box;
     }
 
     @Watch('process')
     private onProcessChanged(): void {
       if (!this.process) {
         return;
+      }
+
+      if (this.process.type === ProcessType.Core) {
+        this.stepType = StepType.Arrow;
       }
 
       // sort steps

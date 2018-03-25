@@ -1,18 +1,21 @@
 <template>
   <div class="evo-process-map">
-    <div class="evo-process-map-item">
+    <div class="evo-process-map-item evo-process-map-item__management">
       <process-container
           title="Managementprozesse"
+          title-position="top"
           :process="getProcessData(3)"></process-container>
     </div>
-    <div class="evo-process-map-item evo-process-map-item__with-space">
+    <div class="evo-process-map-item evo-process-map-item__core">
       <process-container
           title="Kernprozesse"
+          title-position="top"
           :process="getProcessData(1)"></process-container>
     </div>
-    <div class="evo-process-map-item">
+    <div class="evo-process-map-item evo-process-map-item__support">
       <process-container
           title="Unterstützende Prozesse"
+          title-position="bottom"
           :process="getProcessData(2)"></process-container>
     </div>
     <div class="evo-process-map__side-bar-left">
@@ -102,14 +105,71 @@ export default class Home extends Vue {
 
     &-item {
       display: block;
+      position: relative;
       width: 80%;
-      max-width: 1024px;
-      padding: 1em 2em 2em 2em;
+      padding: 0.5em 2em 1em 2em;
       margin: 0 auto;
-      background-color: rgba(0, 250, 168, 0.38);
+      overflow: hidden;
 
-      &__with-space {
+      &__management {
+        background-color: rgba(84, 158, 244, 0.35);
+
+        &::after {
+          content: ' ';
+          background-color: white;
+          display: block;
+          width: 80%;
+          height: 20em;
+          position: absolute;
+          top: 8em;
+          left: -10em;
+          transform: rotate(10deg);
+        }
+
+        &::before {
+          content: ' ';
+          background-color: white;
+          display: block;
+          width: 80%;
+          height: 20em;
+          position: absolute;
+          top: 8em;
+          right: -10em;
+          transform: rotate(-10deg);
+        }
+      }
+
+      &__core {
         margin: 2em auto;
+        background-color: white;
+      }
+
+      &__support {
+        background-color: rgba(84, 158, 244, 0.35);
+
+        &::after {
+          content: ' ';
+          background-color: white;
+          display: block;
+          width: 80%;
+          height: 20em;
+          position: absolute;
+          bottom: 8em;
+          right: -10em;
+          transform: rotate(10deg);
+        }
+
+        &::before {
+          content: ' ';
+          background-color: white;
+          display: block;
+          width: 80%;
+          height: 20em;
+          position: absolute;
+          bottom: 8em;
+          left: -10em;
+          transform: rotate(-10deg);
+        }
       }
     }
 

@@ -12,7 +12,7 @@
 
 <style lang="scss">
   body {
-    min-width: 840px;
+    min-width: 640px;
   }
 
   #app {

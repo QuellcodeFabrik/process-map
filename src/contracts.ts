@@ -10,6 +10,14 @@ export enum ProcessType {
 }
 
 /**
+ * Defines how the step is rendered on the process map.
+ */
+export enum StepType {
+  Arrow = 1,
+  Box = 2
+}
+
+/**
  * The data structure representing a process that has to be visualized.
  */
 export interface Process {

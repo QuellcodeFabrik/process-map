@@ -204,7 +204,7 @@ const processDefinitionList = {
                 "ProcessType": "Core",
                 "StepId": "10.4",
                 "Title": "Produktion",
-                "StepLabel": null,
+                "StepLabel": "Inländische Produktion",
                 "StepOrder": "4.1",
                 "ReferenceUrl": {
                     "__metadata": {

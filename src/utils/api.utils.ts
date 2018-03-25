@@ -65,7 +65,7 @@ export default class ApiMixin extends Vue {
           id: processStepItem.StepId,
           position: processStepItem.StepOrder,
           title: processStepItem.Title,
-          label: processStepItem.ProcessLabel,
+          label: processStepItem.StepLabel,
           url: processStepItem.ReferenceUrl ?
             processStepItem.ReferenceUrl.Url : null,
           showOnMap: processStepItem.ShowOnProcessMap,
