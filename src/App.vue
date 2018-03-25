@@ -10,7 +10,11 @@
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
+  * {
+    box-sizing: content-box;
+  }
+
   body {
     min-width: 640px;
   }

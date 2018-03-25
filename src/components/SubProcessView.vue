@@ -1,7 +1,11 @@
 <template>
   <div class="evo-sub-process-view">
-    <!-- TODO populate this field and adapt styling -->
-    SUB PROCESS VIEW
+    <h3>{{ process.title }}</h3>
+    <ul class="evo-sub-process-view__list">
+      <li v-for="step in process.steps" :key="step.id">
+        <a :href="step.url">{{ step.title }}</a>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -31,5 +35,9 @@
     -webkit-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.5);
     -moz-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.5);
     box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.5);
+
+    &__list {
+      list-style: none;
+    }
   }
 </style>
