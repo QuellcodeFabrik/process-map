@@ -179,8 +179,9 @@ export default class Home extends Vue {
       top: 50%;
       height: auto;
       width: 16em;
+      font-size: 20px;
       margin-left: -8em;
-      padding: 2em;
+      padding: 1em;
       background-color: rgba(255, 122, 0, 0.31);
 
       -webkit-transform: rotate(-90deg);
@@ -195,8 +196,9 @@ export default class Home extends Vue {
       right: 0;
       top: 50%;
       width: 16em;
+      font-size: 20px;
       margin-right: -8em;
-      padding: 2em;
+      padding: 1em;
       background-color: rgba(255, 122, 0, 0.31);
 
 

@@ -5,6 +5,7 @@
         :key="step.id"
         :step="step"
         :type="stepType"
+        :parallel-steps="hasParallelSteps"
         class="evo-process-step-group__step">
     </process-step>
   </div>
@@ -24,6 +25,7 @@
   export default class ProcessStepGroup extends Vue {
     @Prop() private steps: Step[];
     @Prop() private stepType: number;
+    @Prop() private hasParallelSteps: boolean;
 
     private created() {
       this.$log.debug('Process Step Group Component loaded.');

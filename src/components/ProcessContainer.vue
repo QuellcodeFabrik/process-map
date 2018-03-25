@@ -1,15 +1,15 @@
 <template>
   <div class="evo-process-container">
-    <h2 v-if="titlePosition === 'top'">{{ title }}</h2>
+    <h2 v-if="titlePosition === 'top'" class="evo-process-container__heading">{{ title }}</h2>
     <div v-if="processStepGroups" class="evo-process-steps__list">
       <process-step-group
           v-for="stepGroups in processStepGroups"
           :steps="stepGroups"
-          :step-type="stepType"
+          :has-parallel-steps="processHasParallelSteps"
           class="evo-process-steps__item">
       </process-step-group>
     </div>
-    <h2 v-if="titlePosition === 'bottom'">{{ title }}</h2>
+    <h2 v-if="titlePosition === 'bottom'" class="evo-process-container__heading">{{ title }}</h2>
   </div>
 </template>
 
@@ -31,11 +31,13 @@
 
     private processStepGroups: ProcessStep[][];
     private stepType: StepType;
+    private processHasParallelSteps: boolean;
 
     constructor() {
       super();
       this.processStepGroups = [];
       this.stepType = StepType.Box;
+      this.processHasParallelSteps = false;
     }
 
     @Watch('process')
@@ -56,7 +58,7 @@
       // sort steps into step groups
       this.process.steps
         .reduce((previousValue: ProcessStep[][], currentValue: ProcessStep): ProcessStep[][] => {
-          if (currentValue.position.indexOf('.') > -1) {
+          if (currentValue.showOnMap && currentValue.position.indexOf('.') > -1) {
             if (previousValue.length && previousValue[previousValue.length - 1][0].position.indexOf('.') > -1) {
               previousValue[previousValue.length - 1].push(currentValue);
               return previousValue;
@@ -66,6 +68,9 @@
           return previousValue;
         }, [])
         .forEach((stepGroup: ProcessStep[]) => {
+          if (stepGroup.length > 1) {
+            this.processHasParallelSteps = true;
+          }
           this.processStepGroups.push(stepGroup);
         });
     }
@@ -79,5 +84,14 @@
 <style lang="scss" scoped>
   .evo-process-container {
     display: block;
+
+    &__heading {
+      display: block;
+      font-size: 1.5em;
+      -webkit-margin-before: 0.83em;
+      -webkit-margin-after: 0.83em;
+      -webkit-margin-start: 0;
+      -webkit-margin-end: 0;
+    }
   }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="evo-process-step"
-       v-bind:class="{ 'is-stacked': isStackedStep(), 'is-arrow': isRenderedAsArrow() }"
+       v-bind:class="{ 'is-stacked': isStackedStep(), 'has-parallel-steps': parallelSteps }"
        v-on:click="triggerStepAction()"
        @mouseover="showSubProcess = true"
        @mouseleave="showSubProcess = false">
@@ -35,7 +35,7 @@
   })
   export default class ProcessStep extends Vue {
     @Prop() private step: Step;
-    @Prop() private type: number;
+    @Prop() private parallelSteps: boolean;
 
     private showSubProcess: boolean;
 
@@ -46,10 +46,6 @@
 
     private created() {
       this.$log.debug('Process Step Component loaded.');
-    }
-
-    private isRenderedAsArrow(): boolean {
-      return this.type === StepType.Arrow;
     }
 
     /**
@@ -79,14 +75,14 @@
 </script>
 
 <style lang="scss" scoped>
-  $step-height-arrow: 9em;
+  $step-height-arrow: 10em;
   $step-height-box: 5em;
 
   .evo-process-step {
     position: relative;
     text-align: left;
     height: $step-height-box;
-    min-width: 8em;
+    min-width: 12em;
     max-width: 20em;
     background: #FFF4E3;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.25);
@@ -95,9 +91,8 @@
     vertical-align: top;
     cursor: pointer;
 
-    &.is-arrow {
+    &.has-parallel-steps {
       height: $step-height-arrow;
-      min-width: 10em;
     }
 
     &.is-stacked {
