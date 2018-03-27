@@ -3,6 +3,8 @@ import axios from 'axios';
 import Component from 'vue-class-component';
 import { Process, ProcessType } from '@/contracts';
 
+require('es6-promise').polyfill();
+
 declare var window: {
   [key: string]: any; // add missing index definition
   prototype: Window;
