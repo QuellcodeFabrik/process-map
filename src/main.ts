@@ -3,7 +3,7 @@ import { polyfill } from 'es6-promise';
 import App from './App.vue';
 import { Logger } from './utils/logger.utils';
 import router from './utils/router.utils';
-import store from './utils/store.utils';
+import store from './utils/i18n.utils';
 
 // load polyfill for the Promise object in IE
 polyfill();

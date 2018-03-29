@@ -19,10 +19,10 @@
           :process="getProcessData(2)"></process-container>
     </div>
     <div class="evo-process-map__side-bar-left">
-      Kundenanforderungen
+      {{ 'evo.layout.box.customer-requirements' | translate }}
     </div>
     <div class="evo-process-map__side-bar-right">
-      Kundenzufriedenheit
+      {{ 'evo.layout.box.customer-satisfaction' | translate }}
     </div>
   </div>
 </template>

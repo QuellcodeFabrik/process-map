@@ -4,7 +4,7 @@ declare module '*.vue' {
 }
 
 declare module 'vuejs-logger' {
-  import {PluginFunction} from 'vue';
+  import { PluginFunction } from 'vue';
 
   export default class VueLogger {
     info (...args : any[]): void;
