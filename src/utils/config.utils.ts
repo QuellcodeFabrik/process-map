@@ -19,11 +19,16 @@ export default class ConfigurationMixin extends Vue {
   private configuration: {[index: string]: string | boolean} = {
     PROCESS_DEFINITION_LIST: 'https://evocomcloud.sharepoint.com/sites/DemoApps/qm/',
     PROCESS_VISUALIZATION: 'box', // could be 'arrow'
-    SHOW_TITLE_SECTION: true
+    SHOW_TITLE_SECTION: true,
+    LANGUAGE: 'de-DE'
   };
 
   public created() {
     this.$log.debug('Configuration Mixin loaded.');
+
+    if (window.hasOwnProperty('_spPageContextInfo')) {
+      this.configuration.LANGUAGE = window._spPageContextInfo.currentUICultureName || 'de-DE';
+    }
   }
 
   /**

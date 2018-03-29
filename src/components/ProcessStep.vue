@@ -1,9 +1,10 @@
 <template>
   <div class="evo-process-step"
-       v-bind:class="{ 'is-stacked': isStackedStep(), 'has-parallel-steps': parallelSteps }"
-       v-on:click="triggerStepAction()"
-       @mouseover="showSubProcess = true"
-       @mouseleave="showSubProcess = false">
+       v-bind:class="{
+         'evo-process-step--is-stacked': isStackedStep(),
+         'evo-process-step--has-parallel-steps': parallelSteps,
+         'evo-process-step--is-clickable': !!step.url }"
+       v-on:click="triggerStepAction()">
 
     <div class="evo-process-step__header evo-process-step-header">
       <span class="evo-process-step-header__id">{{ step.id }}</span>
@@ -14,8 +15,15 @@
       {{ step.title }}
     </div>
 
+    <div class="evo-process-step__sub-process-trigger"
+         v-if="step.subProcess"
+         @mouseover="showSubProcess = true">
+    </div>
+
     <transition appear>
-      <div v-if="showSubProcess && step.subProcess" class="evo-process-step__sub-process">
+      <div v-if="showSubProcess && step.subProcess"
+           class="evo-process-step__sub-process"
+           @mouseleave="showSubProcess = false">
         <sub-process-view :process="step.subProcess"></sub-process-view>
       </div>
     </transition>
@@ -24,7 +32,7 @@
 
 <script lang="ts">
   import { Component, Prop, Vue } from 'vue-property-decorator';
-  import {ProcessStep as Step, StepType} from '../contracts';
+  import { ProcessStep as Step, StepType } from '../contracts';
   import SubProcessView from '@/components/SubProcessView.vue';
 
   @Component({
@@ -59,16 +67,14 @@
     }
 
     /**
-     * If process has a sub-process defined, a sub-process modal will be shown.
-     * Else the link that is part of the step will be opened in a new tab.
+     * If the process step has a link defined, that link will be opened in a
+     * new tab.
      */
     private triggerStepAction(): void {
-      if (this.step.subProcess) {
-        this.$log.info('Sub Process is defined for this step.');
-      } else if (this.step.url) {
+      if (this.step.url) {
         window.open(this.step.url, '_blank');
       } else {
-        this.$log.error('The process step has neither a URL nor a sub-process.');
+        this.$log.error('The process step has no URL to be opened.');
       }
     }
   }
@@ -89,16 +95,20 @@
     margin-right: 0.5em;
     margin-bottom: 1em;
     vertical-align: top;
-    cursor: pointer;
+    cursor: default;
 
-    &.has-parallel-steps {
+    &--has-parallel-steps {
       height: $step-height-arrow;
     }
 
-    &.is-stacked {
+    &--is-stacked {
       height: $step-height-arrow / 2 - 0.25em;
       overflow: visible;
       margin-bottom: 0.5em;
+    }
+
+    &--is-clickable {
+      cursor: pointer;
     }
 
     &-header {
@@ -130,11 +140,27 @@
     &__body {
       padding: 0.3em;
       font-size: 20px;
+
+      &::after {
+        content: ' ';
+        display: block;
+      }
+    }
+
+    &__sub-process-trigger {
+      position: absolute;
+      width: 0;
+      height: 0;
+      bottom: 0;
+      right: 0;
+      border-left: 24px solid transparent;
+      border-right: 24px solid green;
+      border-top: 24px solid transparent;
     }
 
     &__sub-process {
       position: absolute;
-      top: -0.5em;
+      top: 0;
       left: -0.5em;
       right: -0.5em;
     }
