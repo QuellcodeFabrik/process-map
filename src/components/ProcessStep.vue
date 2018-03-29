@@ -47,7 +47,7 @@
 
 <script lang="ts">
   import { Component, Prop, Vue } from 'vue-property-decorator';
-  import { ProcessStep as Step, StepType } from '../contracts';
+  import { ProcessStep as Step } from '../contracts';
   import SubProcessView from '@/components/SubProcessView.vue';
   import ConfigurationMixin from '../utils/config.utils';
 
