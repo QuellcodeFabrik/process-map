@@ -100,6 +100,8 @@ export default class Home extends Vue {
 </script>
 
 <style lang="scss" scoped>
+  @import '../styles/variables.scss';
+
   .evo-process-map {
     position: relative;
 
@@ -112,11 +114,11 @@ export default class Home extends Vue {
       overflow: hidden;
 
       &__management {
-        background-color: rgba(84, 158, 244, 0.35);
+        background-color: $c-process-container;
 
         &::after {
           content: ' ';
-          background-color: white;
+          background-color: $c-app-bg;
           display: block;
           width: 80%;
           height: 20em;
@@ -128,7 +130,7 @@ export default class Home extends Vue {
 
         &::before {
           content: ' ';
-          background-color: white;
+          background-color: $c-app-bg;
           display: block;
           width: 80%;
           height: 20em;
@@ -141,15 +143,15 @@ export default class Home extends Vue {
 
       &__core {
         margin: 2em auto;
-        background-color: white;
+        background-color: $c-app-bg;
       }
 
       &__support {
-        background-color: rgba(84, 158, 244, 0.35);
+        background-color: $c-process-container;
 
         &::after {
           content: ' ';
-          background-color: white;
+          background-color: $c-app-bg;
           display: block;
           width: 80%;
           height: 20em;
@@ -161,7 +163,7 @@ export default class Home extends Vue {
 
         &::before {
           content: ' ';
-          background-color: white;
+          background-color: $c-app-bg;
           display: block;
           width: 80%;
           height: 20em;
@@ -182,7 +184,7 @@ export default class Home extends Vue {
       font-size: 20px;
       margin-left: -8em;
       padding: 1em;
-      background-color: rgba(255, 122, 0, 0.31);
+      background-color: $c-side-box;
 
       -webkit-transform: rotate(-90deg);
       -moz-transform: rotate(-90deg);
@@ -199,7 +201,7 @@ export default class Home extends Vue {
       font-size: 20px;
       margin-right: -8em;
       padding: 1em;
-      background-color: rgba(255, 122, 0, 0.31);
+      background-color: $c-side-box;
 
 
       -webkit-transform: rotate(90deg);

@@ -88,6 +88,8 @@
 </script>
 
 <style lang="scss" scoped>
+  @import '../styles/variables.scss';
+
   $step-height-arrow: 10em;
   $step-height-box: 5em;
 
@@ -97,7 +99,7 @@
     height: $step-height-box;
     min-width: 12em;
     max-width: 20em;
-    background: #FFF4E3;
+    background: $c-process-step-bg;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.25);
     margin-right: 0.5em;
     margin-bottom: 1em;
@@ -133,8 +135,8 @@
       line-height: 1.1em;
       text-align: left;
       padding: 0.6em;
-      background-image: linear-gradient(-180deg, rgba(250,217,97,0.74) 50%, rgba(246,125,57,0.60) 100%);
-      color: #252525;
+      background-image: $c-process-step-title-bg;
+      color: $c-process-step-text;
 
       &__id {
         margin-right: 0.8em;
@@ -169,7 +171,7 @@
       bottom: 0;
       right: 0;
       border-left: 24px solid transparent;
-      border-right: 24px solid green;
+      border-right: 24px solid $c-sub-process-trigger;
       border-top: 24px solid transparent;
     }
 

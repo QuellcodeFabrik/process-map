@@ -32,12 +32,14 @@
 </script>
 
 <style lang="scss" scoped>
+  @import '../styles/variables.scss';
+
   .evo-sub-process-view {
     position: relative;
     display: block;
     padding: 1em;
     line-height: 1.2em;
-    background-color: white;
+    background-color: $c-sub-process-bg;
     -webkit-box-shadow: 0 0 10px 2px rgba(0,0,0,0.5);
     -moz-box-shadow: 0 0 10px 2px rgba(0,0,0,0.5);
     box-shadow: 0 0 10px 2px rgba(0,0,0,0.5);
