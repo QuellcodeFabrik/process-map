@@ -3,10 +3,12 @@
        v-bind:class="{
          'evo-process-step--is-stacked': isStackedStep(),
          'evo-process-step--has-parallel-steps': parallelSteps,
-         'evo-process-step--is-clickable': !!step.url }"
+         'evo-process-step--is-clickable': !!step.url,
+         'evo-process-step--has-header': showHeader }"
        v-on:click="triggerStepAction()">
 
-    <div class="evo-process-step__header evo-process-step-header">
+    <div class="evo-process-step__header evo-process-step-header"
+         v-if="showHeader">
       <span class="evo-process-step-header__id">{{ step.id }}</span>
       <span class="evo-process-step-header__label">{{ step.label }}</span>
     </div>
@@ -34,26 +36,31 @@
   import { Component, Prop, Vue } from 'vue-property-decorator';
   import { ProcessStep as Step, StepType } from '../contracts';
   import SubProcessView from '@/components/SubProcessView.vue';
+  import ConfigurationMixin from '../utils/config.utils';
 
   @Component({
     name: 'process-step',
     components: {
       SubProcessView
-    }
+    },
+    mixins: [ConfigurationMixin]
   })
   export default class ProcessStep extends Vue {
     @Prop() private step: Step;
     @Prop() private parallelSteps: boolean;
 
     private showSubProcess: boolean;
+    private showHeader: boolean;
 
     constructor() {
       super();
       this.showSubProcess = false;
+      this.showHeader = true;
     }
 
     private created() {
       this.$log.debug('Process Step Component loaded.');
+      this.showHeader = this.getConfigurationValue('SHOW_STEP_HEADER') as boolean;
     }
 
     /**
@@ -98,13 +105,21 @@
     cursor: default;
 
     &--has-parallel-steps {
-      height: $step-height-arrow;
+      height: $step-height-arrow - 2.5em;
+
+      &.evo-process-step--has-header {
+        height: $step-height-arrow;
+      }
     }
 
     &--is-stacked {
-      height: $step-height-arrow / 2 - 0.25em;
+      height: ($step-height-arrow - 2.5em) / 2 - 0.25em;
       overflow: visible;
       margin-bottom: 0.5em;
+
+      &.evo-process-step--has-header {
+        height: $step-height-arrow / 2 - 0.25em;
+      }
     }
 
     &--is-clickable {
