@@ -1,9 +1,8 @@
 import Vue from 'vue';
 import axios from 'axios';
 import Component from 'vue-class-component';
-import { Process, ProcessType } from '@/contracts';
-
-require('es6-promise').polyfill();
+import {Process, ProcessStep, ProcessType} from '@/contracts';
+import ConfigurationMixin from '@/utils/config.utils';
 
 declare var window: {
   [key: string]: any; // add missing index definition
@@ -17,19 +16,20 @@ declare module 'vue/types/vue' {
   }
 }
 
-@Component
+@Component({
+  mixins: [ConfigurationMixin]
+})
 export default class ApiMixin extends Vue {
-  private static SharePointApi = axios.create({
+
+  private SharePointApi = axios.create({
     baseURL: window.hasOwnProperty('_spPageContextInfo') ?
-      window.PROCESS_DEFINITION_LIST || 'https://evocomcloud.sharepoint.com/sites/DemoApps/qm/' :
-      'http://localhost:8000/',
+      this.getConfigurationValue('PROCESS_DEFINITION_LIST') as string : 'http://localhost:8000/',
     timeout: 30000,
     headers: {
       'Accept': 'application/json;odata=verbose',
       'Content-Type': 'application/json'
     }
   });
-
 
   public created() {
     this.$log.debug('API Mixin loaded.');
@@ -46,10 +46,12 @@ export default class ApiMixin extends Vue {
       '$select=Id,ProcessId,ProcessTitle,ProcessType,StepId,Title,StepLabel,' +
       'StepOrder,ReferenceUrl,ShowOnProcessMap,SubProcessId';
 
-    return ApiMixin.SharePointApi.get(url, {
+    return this.SharePointApi.get(url, {
       params: {}
     }).then((response: any) => {
       const processMapping: {[index: string]: Process} = {};
+      const subProcessMappings: {[index: string]: Array<{ stepId: string, subProcessId: string }>} = {};
+      const subProcessIds: string[] = [];
 
       response.data.d.results.forEach((processStepItem: any) => {
         const processId = processStepItem.ProcessId;
@@ -71,11 +73,33 @@ export default class ApiMixin extends Vue {
           url: processStepItem.ReferenceUrl ?
             processStepItem.ReferenceUrl.Url : null,
           showOnMap: processStepItem.ShowOnProcessMap,
-          subProcess: processStepItem.SubProcessId
+          subProcess: undefined
+        });
+
+        if (processStepItem.SubProcessId) {
+          subProcessIds.push(processStepItem.SubProcessId);
+
+          if (!subProcessMappings[processStepItem.ProcessId]) {
+            subProcessMappings[processStepItem.ProcessId] = [];
+          }
+
+          subProcessMappings[processStepItem.ProcessId].push({
+            stepId: processStepItem.StepId,
+            subProcessId: processStepItem.SubProcessId
+          });
+        }
+      });
+
+      Object.keys(subProcessMappings).forEach((processId: string) => {
+        subProcessMappings[processId].forEach((stepMapping: { stepId: string, subProcessId: string }) => {
+          processMapping[processId].steps.filter((processStep: ProcessStep) => {
+            return processStep.id === stepMapping.stepId;
+          })[0].subProcess = processMapping[stepMapping.subProcessId];
         });
       });
 
       return Object.keys(processMapping)
+        .filter((key: string) => subProcessIds.indexOf(key) === -1)
         .map((key: string) => processMapping[key]);
     });
   }
