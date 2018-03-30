@@ -46,10 +46,12 @@
       display: block;
 
       &.stacked {
-        z-index: 10;
+        .evo-process-step-group__step {
+          z-index: 10;
 
-        &:first-of-type {
-          z-index: 11;
+          &:first-of-type {
+            z-index: 11;
+          }
         }
       }
     }

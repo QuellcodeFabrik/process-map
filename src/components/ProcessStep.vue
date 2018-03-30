@@ -183,9 +183,9 @@
       height: 0;
       bottom: 0;
       left: 0;
-      border-right: 24px solid transparent;
-      border-left: 24px solid $c-sub-process-trigger;
-      border-top: 24px solid transparent;
+      border-right: 16px solid transparent;
+      border-left: 16px solid $c-sub-process-trigger;
+      border-top: 16px solid transparent;
     }
 
     &__sub-process {
