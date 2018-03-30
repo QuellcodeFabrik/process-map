@@ -5,7 +5,8 @@
       <li v-for="step in process.steps"
           :key="step.id"
           class="evo-sub-process-view__item">
-        <a :href="step.url" target="_blank">{{ step.id + ' ' + step.title }}</a>
+        <a v-if="step.url" :href="step.url" target="_blank">{{ step.id + ' ' + step.title }}</a>
+        <span v-if="!step.url">{{ step.id + ' ' + step.title }}</span>
       </li>
     </ul>
   </div>

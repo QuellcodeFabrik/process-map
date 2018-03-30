@@ -6,6 +6,12 @@
         <img src="../assets/process-container-background-top.svg" alt="Process Container Background">
       </div>
     </div>
+    <div v-if="titlePosition === 'bottom'" >
+      <h2 class="evo-process-container__heading bottom">{{ title | translate }}</h2>
+      <div class="evo-process-container__background bottom">
+        <img src="../assets/process-container-background-bottom.svg" alt="Process Container Background">
+      </div>
+    </div>
     <div class="evo-process-container__list"
          v-if="processStepGroups"
          v-bind:class="{ top: titlePosition === 'top', bottom: titlePosition === 'bottom' }">
@@ -16,12 +22,6 @@
           :has-parallel-steps="processHasParallelSteps"
           class="evo-process-steps__item">
       </process-step-group>
-    </div>
-    <div v-if="titlePosition === 'bottom'" >
-      <h2 class="evo-process-container__heading bottom">{{ title | translate }}</h2>
-      <div class="evo-process-container__background bottom">
-        <img src="../assets/process-container-background-bottom.svg" alt="Process Container Background">
-      </div>
     </div>
   </div>
 </template>
@@ -105,7 +105,6 @@
       position: absolute;
       left: 0;
       right: 0;
-      z-index: -1;
 
       &.top {
         top: 0;

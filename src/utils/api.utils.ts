@@ -21,18 +21,20 @@ declare module 'vue/types/vue' {
 })
 export default class ApiMixin extends Vue {
 
-  private SharePointApi = axios.create({
-    baseURL: window.hasOwnProperty('_spPageContextInfo') ?
-      this.getConfigurationValue('PROCESS_DEFINITION_LIST') as string : 'http://localhost:8000/',
-    timeout: 30000,
-    headers: {
-      'Accept': 'application/json;odata=verbose',
-      'Content-Type': 'application/json'
-    }
-  });
+  private sharePointApi: any;
 
   public created() {
     this.$log.debug('API Mixin loaded.');
+
+    this.sharePointApi = axios.create({
+      baseURL: window.hasOwnProperty('_spPageContextInfo') ?
+        this.getConfigurationValue('PROCESS_DEFINITION_LIST') as string : 'http://localhost:8000/',
+      timeout: 30000,
+      headers: {
+        'Accept': 'application/json;odata=verbose',
+        'Content-Type': 'application/json'
+      }
+    });
   }
 
   /**
@@ -46,7 +48,7 @@ export default class ApiMixin extends Vue {
       '$select=Id,Process,ProcessId,ProcessTitle,ProcessType,StepId,StepLabel,' +
       'StepOrder,ReferenceUrl,ShowOnProcessMap,SubProcessId';
 
-    return this.SharePointApi.get(url, {
+    return this.sharePointApi.get(url, {
       params: {}
     }).then((response: any) => {
       const processMapping: {[index: string]: Process} = {};

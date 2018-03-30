@@ -129,7 +129,6 @@ export default class Home extends Vue {
       width: 1.8em;
       font-size: 20px;
       padding: 1em;
-      z-index: -1;
       background-color: $c-side-box;
 
       // background: -moz-linear-gradient(left, rgba(255,177,114,1) 0%, rgba(125,185,232,0) 100%); /* FF3.6-15 */
@@ -159,7 +158,6 @@ export default class Home extends Vue {
       width: 1.8em;
       font-size: 20px;
       padding: 1em;
-      z-index: -1;
       background-color: $c-side-box;
 
       // background: -moz-linear-gradient(left, rgba(125,185,232,0) 1%, rgba(163,183,197,0) 30%, rgba(255,177,114,1) 100%); /* FF3.6-15 */
