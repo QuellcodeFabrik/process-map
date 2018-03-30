@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import axios from 'axios';
 import Component from 'vue-class-component';
-import {Process, ProcessStep, ProcessType} from '@/contracts';
+import { Process, ProcessStep, ProcessType } from '@/contracts';
 import ConfigurationMixin from '@/utils/config.utils';
 
 declare var window: {
@@ -43,7 +43,7 @@ export default class ApiMixin extends Vue {
    */
   public getProcessDefinition(): Promise<Process[]> {
     const url = '_api/web/lists/GetByTitle(\'ProcessDefinition\')/items?' +
-      '$select=Id,ProcessId,ProcessTitle,ProcessType,StepId,Title,StepLabel,' +
+      '$select=Id,Process,ProcessId,ProcessTitle,ProcessType,StepId,StepLabel,' +
       'StepOrder,ReferenceUrl,ShowOnProcessMap,SubProcessId';
 
     return this.SharePointApi.get(url, {
@@ -59,8 +59,8 @@ export default class ApiMixin extends Vue {
         if (!processMapping.hasOwnProperty(processStepItem.ProcessId)) {
           processMapping[processStepItem.ProcessId] = {
             id: processStepItem.Id,
-            title: processStepItem.ProcessTitle,
-            type: this.getProcessType(processStepItem.ProcessType),
+            title: ApiMixin.extractString(processStepItem.ProcessTitle),
+            type: ApiMixin.getProcessType(processStepItem.ProcessType),
             steps: []
           };
         }
@@ -68,8 +68,8 @@ export default class ApiMixin extends Vue {
         processMapping[processId].steps.push({
           id: processStepItem.StepId,
           position: processStepItem.StepOrder,
-          title: processStepItem.Title,
-          label: processStepItem.StepLabel,
+          title: ApiMixin.extractString(processStepItem.Process),
+          label: ApiMixin.extractString(processStepItem.StepLabel),
           url: processStepItem.ReferenceUrl ?
             processStepItem.ReferenceUrl.Url : null,
           showOnMap: processStepItem.ShowOnProcessMap,
@@ -105,12 +105,12 @@ export default class ApiMixin extends Vue {
   }
 
   /**
-   * Transform processType string in to enum type.
+   * Transforms processType string into enum type.
    *
    * @param {string} processType
    * @returns {ProcessType}
    */
-  private getProcessType(processType: string): ProcessType {
+  private static getProcessType(processType: string): ProcessType {
     switch (processType) {
       case 'Management':
         return ProcessType.Management;
@@ -120,6 +120,33 @@ export default class ApiMixin extends Vue {
         return ProcessType.Core;
       default:
         throw Error('Process type unknown: ' + processType);
+    }
+  }
+
+  /**
+   * Handles multiple SharePoint field types. If a translated string is given
+   * by SharePoint it just returns that string. If a Term Set object is returned,
+   * it extracts the translated string and returns it.
+   *
+   * @param {string | any} sharePointField
+   * @returns {string}
+   */
+  private static extractString(sharePointField: string | any): string {
+    if (!sharePointField) {
+      return '';
+    }
+
+    if (typeof sharePointField === 'string') {
+      return sharePointField as string;
+    } else {
+      if (
+        !sharePointField.hasOwnProperty('results') ||
+        sharePointField.results.length < 1 ||
+        !sharePointField.results[0].hasOwnProperty('Label')
+      ) {
+        throw Error('SharePoint Term Set has wrong structure: ' + JSON.stringify(sharePointField));
+      }
+      return sharePointField.results[0].Label as string;
     }
   }
 }

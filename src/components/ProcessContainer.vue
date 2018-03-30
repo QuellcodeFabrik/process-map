@@ -1,6 +1,6 @@
 <template>
   <div class="evo-process-container">
-    <h2 v-if="titlePosition === 'top'" class="evo-process-container__heading">{{ title }}</h2>
+    <h2 v-if="titlePosition === 'top'" class="evo-process-container__heading">{{ title | translate }}</h2>
     <div v-if="processStepGroups" class="evo-process-steps__list">
       <process-step-group
           v-for="stepGroups in processStepGroups"
@@ -9,14 +9,14 @@
           class="evo-process-steps__item">
       </process-step-group>
     </div>
-    <h2 v-if="titlePosition === 'bottom'" class="evo-process-container__heading">{{ title }}</h2>
+    <h2 v-if="titlePosition === 'bottom'" class="evo-process-container__heading">{{ title | translate }}</h2>
   </div>
 </template>
 
 <script lang="ts">
   import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
   import ProcessStepGroup from '@/components/ProcessStepGroup.vue';
-  import {Process, ProcessStep, ProcessType, StepType} from '../contracts';
+  import { Process, ProcessStep, ProcessType, StepType } from '../contracts';
 
   @Component({
     name: 'process-container',

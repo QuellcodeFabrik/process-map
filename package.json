@@ -41,5 +41,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/QuellcodeFabrik/process-map.git"
-  }
+  },
+  "license": "ISC"
 }

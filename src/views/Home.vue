@@ -2,19 +2,19 @@
   <div class="evo-process-map">
     <div class="evo-process-map-item evo-process-map-item__management">
       <process-container
-          title="Managementprozesse"
+          title="evo.layout.title.management-process"
           title-position="top"
           :process="getProcessData(3)"></process-container>
     </div>
     <div class="evo-process-map-item evo-process-map-item__core">
       <process-container
-          title="Kernprozesse"
+          title="evo.layout.title.core-process"
           title-position="top"
           :process="getProcessData(1)"></process-container>
     </div>
     <div class="evo-process-map-item evo-process-map-item__support">
       <process-container
-          title="Unterstützende Prozesse"
+          title="evo.layout.title.support-process"
           title-position="bottom"
           :process="getProcessData(2)"></process-container>
     </div>
