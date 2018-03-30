@@ -75,8 +75,6 @@
     private created() {
       this.$log.debug('Process Step Component loaded.');
       this.showHeader = this.getConfigurationValue('SHOW_STEP_HEADER') as boolean;
-
-      this.$log.info('Step type:', this.type);
     }
 
     /**

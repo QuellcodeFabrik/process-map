@@ -139,7 +139,9 @@ export default class Home extends Vue {
       &>span {
         display: block;
         position: absolute;
-        left: -3.4em;
+        left: -5.8em;
+        height: 1em;
+        width: 15em;
         top: 50%;
         text-align: center;
         -webkit-transform: rotate(-90deg);
@@ -168,8 +170,10 @@ export default class Home extends Vue {
       &>span {
         display: block;
         position: absolute;
-        right: -3em;
+        right: -6em;
         top: 50%;
+        height: 1em;
+        width: 15em;
         text-align: center;
         -webkit-transform: rotate(90deg);
         -moz-transform: rotate(90deg);
