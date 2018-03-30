@@ -44,6 +44,7 @@
     -moz-box-shadow: 0 0 10px 2px rgba(0,0,0,0.5);
     box-shadow: 0 0 10px 2px rgba(0,0,0,0.5);
     cursor: default;
+    z-index: 100;
 
     &__title {
       margin: 0 0 0.8em 0;

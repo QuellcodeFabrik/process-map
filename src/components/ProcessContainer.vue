@@ -12,6 +12,7 @@
       <process-step-group
           v-for="stepGroups in processStepGroups"
           :steps="stepGroups"
+          :step-type="process.type"
           :has-parallel-steps="processHasParallelSteps"
           class="evo-process-steps__item">
       </process-step-group>

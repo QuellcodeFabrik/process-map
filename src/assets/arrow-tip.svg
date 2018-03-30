@@ -1,0 +1,18 @@
+<svg width="47px" height="145px" viewBox="0 0 47 145" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <path d="M968,317 C968.08928,318.181569 981.870455,341.514902 1009.34352,387 C980.541278,433.666667 966.760103,457 968,457 L968,317 Z" id="path-1"></path>
+        <filter x="-8.4%" y="-3.2%" width="126.6%" height="107.9%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="2" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.25 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop" transform="translate(-967.000000, -315.000000)">
+            <g id="Rectangle-4">
+                <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                <use fill="#FFF4E3" fill-rule="evenodd" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>
