@@ -6,7 +6,10 @@
         :step="step"
         :type="stepType"
         :parallel-steps="hasParallelSteps"
-        class="evo-process-step-group__step">
+        class="evo-process-step-group__step"
+        v-bind:class="{
+          stacked: hasParallelSteps
+        }">
     </process-step>
   </div>
 </template>
@@ -41,10 +44,13 @@
 
     &__step {
       display: block;
-      z-index: 2;
 
-      &:first-of-type {
-        z-index: 3;
+      &.stacked {
+        z-index: 10;
+
+        &:first-of-type {
+          z-index: 11;
+        }
       }
     }
   }

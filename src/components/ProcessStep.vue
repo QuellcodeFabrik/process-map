@@ -83,7 +83,7 @@
      *
      */
     private isArrowStyle(): boolean {
-      return this.type === 1;
+      return this.type === 1 && this.getConfigurationValue('USE_ARROW_STYLE') as boolean;
     }
 
     /**
@@ -129,7 +129,6 @@
     margin-bottom: 1em;
     vertical-align: top;
     cursor: default;
-    z-index: 20;
 
     &--has-parallel-steps {
       height: $step-height-arrow - 2.5em;
@@ -146,6 +145,10 @@
 
       &.evo-process-step--has-header {
         height: $step-height-arrow / 2 - 0.25em;
+      }
+
+      &.evo-process-step--is-arrow {
+        margin-right: 2.5em;
       }
     }
 
@@ -190,6 +193,7 @@
       bottom: 0;
       left: -3em;
       right: -3em;
+      z-index: 20;
 
       &--asymmetric {
         left: -2em;

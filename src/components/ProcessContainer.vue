@@ -101,9 +101,11 @@
     width: 100%;
 
     &__background {
+      display: block;
       position: absolute;
       left: 0;
       right: 0;
+      z-index: -1;
 
       &.top {
         top: 0;
@@ -137,6 +139,7 @@
     }
 
     &__list {
+      display: block;
       padding-top: 4em;
       padding-bottom: 4em;
 
