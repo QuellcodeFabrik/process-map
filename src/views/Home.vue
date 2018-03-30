@@ -9,7 +9,7 @@
     <div class="evo-process-map-item evo-process-map-item__core">
       <process-container
           title="evo.layout.title.core-process"
-          title-position="top"
+          title-position="center"
           :process="getProcessData(1)"></process-container>
     </div>
     <div class="evo-process-map-item evo-process-map-item__support">
@@ -19,10 +19,14 @@
           :process="getProcessData(2)"></process-container>
     </div>
     <div class="evo-process-map__side-bar-left">
-      {{ 'evo.layout.box.customer-requirements' | translate }}
+      <span>
+        {{ 'evo.layout.box.customer-requirements' | translate }}
+      </span>
     </div>
     <div class="evo-process-map__side-bar-right">
-      {{ 'evo.layout.box.customer-satisfaction' | translate }}
+      <span>
+        {{ 'evo.layout.box.customer-satisfaction' | translate }}
+      </span>
     </div>
   </div>
 </template>
@@ -109,106 +113,72 @@ export default class Home extends Vue {
       display: block;
       position: relative;
       width: 80%;
-      padding: 0.5em 2em 1em 2em;
+      padding: 0;
       margin: 0 auto;
-      overflow: hidden;
-
-      &__management {
-        background-color: $c-process-container;
-
-        &::after {
-          content: ' ';
-          background-color: $c-app-bg;
-          display: block;
-          width: 80%;
-          height: 20em;
-          position: absolute;
-          top: 8em;
-          left: -10em;
-          transform: rotate(10deg);
-        }
-
-        &::before {
-          content: ' ';
-          background-color: $c-app-bg;
-          display: block;
-          width: 80%;
-          height: 20em;
-          position: absolute;
-          top: 8em;
-          right: -10em;
-          transform: rotate(-10deg);
-        }
-      }
 
       &__core {
-        margin: 2em auto;
-        background-color: $c-app-bg;
-      }
-
-      &__support {
-        background-color: $c-process-container;
-
-        &::after {
-          content: ' ';
-          background-color: $c-app-bg;
-          display: block;
-          width: 80%;
-          height: 20em;
-          position: absolute;
-          bottom: 8em;
-          right: -10em;
-          transform: rotate(10deg);
-        }
-
-        &::before {
-          content: ' ';
-          background-color: $c-app-bg;
-          display: block;
-          width: 80%;
-          height: 20em;
-          position: absolute;
-          bottom: 8em;
-          left: -10em;
-          transform: rotate(-10deg);
-        }
+        margin: 4em auto;
       }
     }
 
     &__side-bar-left {
       position: absolute;
       left: 0;
-      top: 50%;
-      height: auto;
-      width: 16em;
+      top: 0;
+      bottom: 0;
+      width: 1.8em;
       font-size: 20px;
-      margin-left: -8em;
       padding: 1em;
+      z-index: -1;
       background-color: $c-side-box;
 
-      -webkit-transform: rotate(-90deg);
-      -moz-transform: rotate(-90deg);
-      -ms-transform: rotate(-90deg);
-      -o-transform: rotate(-90deg);
-      filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+      // background: -moz-linear-gradient(left, rgba(255,177,114,1) 0%, rgba(125,185,232,0) 100%); /* FF3.6-15 */
+      // background: -webkit-linear-gradient(left, rgba(255,177,114,1) 0%,rgba(125,185,232,0) 100%); /* Chrome10-25,Safari5.1-6 */
+      // background: linear-gradient(to right, rgba(255,177,114,1) 0%,rgba(125,185,232,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffb172', endColorstr='#007db9e8',GradientType=1 ); /* IE6-9 */
+
+      &>span {
+        display: block;
+        position: absolute;
+        left: -3.4em;
+        top: 50%;
+        text-align: center;
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+      }
     }
 
     &__side-bar-right {
       position: absolute;
       right: 0;
-      top: 50%;
-      width: 16em;
+      top: 0;
+      bottom: 0;
+      width: 1.8em;
       font-size: 20px;
-      margin-right: -8em;
       padding: 1em;
+      z-index: -1;
       background-color: $c-side-box;
 
+      // background: -moz-linear-gradient(left, rgba(125,185,232,0) 1%, rgba(163,183,197,0) 30%, rgba(255,177,114,1) 100%); /* FF3.6-15 */
+      // background: -webkit-linear-gradient(left, rgba(125,185,232,0) 1%,rgba(163,183,197,0) 30%,rgba(255,177,114,1) 100%); /* Chrome10-25,Safari5.1-6 */
+      // background: linear-gradient(to right, rgba(125,185,232,0) 1%,rgba(163,183,197,0) 30%,rgba(255,177,114,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007db9e8', endColorstr='#ffb172',GradientType=1 ); /* IE6-9 */
 
-      -webkit-transform: rotate(90deg);
-      -moz-transform: rotate(90deg);
-      -ms-transform: rotate(90deg);
-      -o-transform: rotate(90deg);
-      filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+      &>span {
+        display: block;
+        position: absolute;
+        right: -3em;
+        top: 50%;
+        text-align: center;
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+      }
     }
   }
 </style>

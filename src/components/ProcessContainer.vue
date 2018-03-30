@@ -1,7 +1,14 @@
 <template>
   <div class="evo-process-container">
-    <h2 v-if="titlePosition === 'top'" class="evo-process-container__heading">{{ title | translate }}</h2>
-    <div v-if="processStepGroups" class="evo-process-steps__list">
+    <div v-if="titlePosition === 'top'" >
+      <h2 class="evo-process-container__heading top">{{ title | translate }}</h2>
+      <div class="evo-process-container__background top">
+        <img src="../assets/process-container-background-top.svg" alt="Process Container Background">
+      </div>
+    </div>
+    <div class="evo-process-container__list"
+         v-if="processStepGroups"
+         v-bind:class="{ top: titlePosition === 'top', bottom: titlePosition === 'bottom' }">
       <process-step-group
           v-for="stepGroups in processStepGroups"
           :steps="stepGroups"
@@ -9,7 +16,12 @@
           class="evo-process-steps__item">
       </process-step-group>
     </div>
-    <h2 v-if="titlePosition === 'bottom'" class="evo-process-container__heading">{{ title | translate }}</h2>
+    <div v-if="titlePosition === 'bottom'" >
+      <h2 class="evo-process-container__heading bottom">{{ title | translate }}</h2>
+      <div class="evo-process-container__background bottom">
+        <img src="../assets/process-container-background-bottom.svg" alt="Process Container Background">
+      </div>
+    </div>
   </div>
 </template>
 
@@ -84,14 +96,58 @@
 <style lang="scss" scoped>
   .evo-process-container {
     display: block;
+    position: relative;
+    width: 100%;
+
+    &__background {
+      position: absolute;
+      left: 0;
+      right: 0;
+
+      &.top {
+        top: 0;
+      }
+
+      &.bottom {
+        bottom: 0;
+      }
+
+      img {
+        width: 100%;
+      }
+    }
 
     &__heading {
       display: block;
       font-size: 1.5em;
-      -webkit-margin-before: 0.83em;
-      -webkit-margin-after: 0.83em;
-      -webkit-margin-start: 0;
-      -webkit-margin-end: 0;
+      position: absolute;
+      z-index: 10;
+      left: 0;
+      right: 0;
+      text-align: center;
+
+      &.top {
+        top: 0;
+      }
+
+      &.bottom {
+        bottom: 0;
+      }
+    }
+
+    &__list {
+      padding-top: 4em;
+      padding-bottom: 4em;
+
+      &.top {
+        padding-top: 5em;
+        padding-bottom: 0;
+      }
+
+      &.bottom {
+        padding-top: 0;
+        padding-bottom: 4.5em;
+      }
     }
   }
 </style>
