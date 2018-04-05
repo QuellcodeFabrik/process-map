@@ -2,10 +2,10 @@ pipeline {
     agent { dockerfile true }
 
     stages {
-        stage('Checkout') {
+        stage('Prepare') {
             steps {
-                echo 'Checking out sources..'
-                checkout scm
+                echo 'Installing dependencies..'
+                sh 'npm install'
             }
         }
         stage('Build') {
