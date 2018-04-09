@@ -13,14 +13,19 @@ describe('ProcessStep component', () => {
     showOnMap: true
   };
   const parallelSteps = false;
-  const $log = { debug: () => {}, info: () => {}, error: () => {} };
+  const $log = {
+    debug: () => { /* mock */ },
+    info: () => { /* mock */ },
+    error: () => { /* mock */ }
+  };
 
   it('should set the initial component properties', () => {
     const wrapper: any = mount(ProcessStepComponent, {
       mocks: {
         $log
       },
-      propsData: { step, parallelSteps } });
+      propsData: { step, parallelSteps }
+    });
 
     expect(wrapper.vm.showSubProcess).to.equal(false);
     expect(wrapper.vm.showHeader).to.equal(true);

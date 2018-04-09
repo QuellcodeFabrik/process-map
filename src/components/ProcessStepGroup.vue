@@ -17,7 +17,7 @@
 <script lang="ts">
   import { Component, Prop, Vue } from 'vue-property-decorator';
   import ProcessStep from '@/components/ProcessStep.vue';
-  import { ProcessStep as Step, StepType } from '../contracts';
+  import { ProcessStep as Step } from '../contracts';
 
   @Component({
     name: 'process-step-group',
