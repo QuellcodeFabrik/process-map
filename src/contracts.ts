@@ -37,6 +37,6 @@ export interface ProcessStep {
   title: string;
   label: string;
   url: string;
-  showOnMap: true;
+  showOnMap: boolean;
   subProcess?: Process;
 }

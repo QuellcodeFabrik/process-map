@@ -2,6 +2,7 @@
   <div class="evo-process-step-group">
     <process-step
         v-for="step in steps"
+        v-if="step.showOnMap"
         :key="step.id"
         :step="step"
         :type="stepType"
