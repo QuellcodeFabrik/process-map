@@ -39,7 +39,10 @@ export default class ConfigurationMixin extends Vue {
    * @returns {string}
    */
   public getConfigurationValue(param: string): string | boolean {
-
-    return window[param] || this.configuration ? this.configuration[param] : '' || '';
+    if (window.hasOwnProperty(param)) {
+      return window[param];
+    } else {
+      return this.configuration ? this.configuration[param] : '' || '';
+    }
   }
 }
