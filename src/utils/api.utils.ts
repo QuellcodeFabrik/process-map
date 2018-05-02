@@ -45,7 +45,7 @@ export default class ApiMixin extends Vue {
    */
   public getProcessDefinition(): Promise<Process[]> {
     const url = '_api/web/lists/GetByTitle(\'ProcessDefinition\')/items?' +
-      '$select=Id,Process,ProcessId,ProcessTitle,ProcessType,StepId,StepLabel,' +
+      '$select=Id,Title,ProcessId,ProcessTitle,ProcessType,StepId,StepLabel,' +
       'StepOrder,ReferenceUrl,ShowOnProcessMap,SubProcessId';
 
     return this.sharePointApi.get(url, {
@@ -70,7 +70,7 @@ export default class ApiMixin extends Vue {
         processMapping[processId].steps.push({
           id: processStepItem.StepId,
           position: processStepItem.StepOrder,
-          title: ApiMixin.extractString(processStepItem.Process),
+          title: ApiMixin.extractString(processStepItem.Title),
           label: ApiMixin.extractString(processStepItem.StepLabel),
           url: processStepItem.ReferenceUrl ?
             processStepItem.ReferenceUrl.Url : null,
