@@ -19,7 +19,7 @@ export default class ConfigurationMixin extends Vue {
   private configuration: {[index: string]: string | boolean} = {
     PROCESS_DEFINITION_LIST: 'https://evocomcloud.sharepoint.com/sites/DemoApps/qm/',
     SHOW_STEP_HEADER: false,
-    LANGUAGE: 'de-DE'
+    LANGUAGE: 'en-US'
   };
 
   public created() {
