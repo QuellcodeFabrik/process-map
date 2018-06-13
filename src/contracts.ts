@@ -13,8 +13,8 @@ export enum ProcessType {
  * Defines how the step is rendered on the process map.
  */
 export enum StepType {
-  Arrow = 1,
-  Box = 2
+  Core = 1,
+  Other = 2
 }
 
 /**

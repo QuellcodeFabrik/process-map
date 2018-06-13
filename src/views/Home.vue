@@ -19,11 +19,13 @@
           :process="getProcessData(2)"></process-container>
     </div>
     <div class="evo-process-map__side-bar-left">
+      <img src="../assets/process-frame-background.svg" alt="Process Frame Background">
       <span>
         {{ 'evo.layout.box.customer-requirements' | translate }}
       </span>
     </div>
     <div class="evo-process-map__side-bar-right">
+      <img src="../assets/process-frame-background.svg" alt="Process Frame Background">
       <span>
         {{ 'evo.layout.box.customer-satisfaction' | translate }}
       </span>
@@ -117,7 +119,7 @@ export default class Home extends Vue {
       margin: 0 auto;
 
       &__core {
-        margin: 4em auto;
+        margin: 6em auto;
       }
     }
 
@@ -128,18 +130,13 @@ export default class Home extends Vue {
       bottom: 0;
       width: 1.8em;
       font-size: 20px;
-      padding: 1em;
-      background-color: $c-side-box;
+      background-color: white;
+      font-weight: 600;
 
-      // background: -moz-linear-gradient(left, rgba(255,177,114,1) 0%, rgba(125,185,232,0) 100%); /* FF3.6-15 */
-      // background: -webkit-linear-gradient(left, rgba(255,177,114,1) 0%,rgba(125,185,232,0) 100%); /* Chrome10-25,Safari5.1-6 */
-      // background: linear-gradient(to right, rgba(255,177,114,1) 0%,rgba(125,185,232,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffb172', endColorstr='#007db9e8',GradientType=1 ); /* IE6-9 */
-
-      &>span {
+       &>span {
         display: block;
         position: absolute;
-        left: -5.8em;
+        left: -7em;
         height: 1em;
         width: 15em;
         top: 50%;
@@ -159,27 +156,22 @@ export default class Home extends Vue {
       bottom: 0;
       width: 1.8em;
       font-size: 20px;
-      padding: 1em;
-      background-color: $c-side-box;
-
-      // background: -moz-linear-gradient(left, rgba(125,185,232,0) 1%, rgba(163,183,197,0) 30%, rgba(255,177,114,1) 100%); /* FF3.6-15 */
-      // background: -webkit-linear-gradient(left, rgba(125,185,232,0) 1%,rgba(163,183,197,0) 30%,rgba(255,177,114,1) 100%); /* Chrome10-25,Safari5.1-6 */
-      // background: linear-gradient(to right, rgba(125,185,232,0) 1%,rgba(163,183,197,0) 30%,rgba(255,177,114,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007db9e8', endColorstr='#ffb172',GradientType=1 ); /* IE6-9 */
+      background-color: white;
+      font-weight: 600;
 
       &>span {
         display: block;
         position: absolute;
-        right: -6em;
+        right: -6.3em;
         top: 50%;
         height: 1em;
         width: 15em;
         text-align: center;
-        -webkit-transform: rotate(90deg);
-        -moz-transform: rotate(90deg);
-        -ms-transform: rotate(90deg);
-        -o-transform: rotate(90deg);
-        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
       }
     }
   }

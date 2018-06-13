@@ -28,10 +28,10 @@ describe('ProcessStep component', () => {
     });
 
     expect(wrapper.vm.showSubProcess).to.equal(false);
-    expect(wrapper.vm.showHeader).to.equal(true);
+    expect(wrapper.vm.showHeader).to.equal(false);
   });
 
-  it('should render the properties being passed from the parent', () => {
+  it('should render the title being passed from the parent', () => {
     const wrapper = shallow(ProcessStepComponent, {
       mocks: {
         $log
@@ -39,8 +39,6 @@ describe('ProcessStep component', () => {
       propsData: { step, parallelSteps }
     });
 
-    expect(wrapper.text()).to.include('id-01');
-    expect(wrapper.text()).to.include('Non-empty label');
     expect(wrapper.text()).to.include('Test step');
   });
 });

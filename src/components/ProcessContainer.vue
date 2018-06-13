@@ -1,12 +1,18 @@
 <template>
-  <div class="evo-process-container">
-    <div v-if="titlePosition === 'top'" >
+  <div class="evo-process-container"
+       v-bind:class="{
+        'evo-process-container--is-core-process': isCoreProcess()
+       }">
+    <div v-if="titlePosition === 'top'">
       <h2 class="evo-process-container__heading top">{{ title | translate }}</h2>
       <div class="evo-process-container__background top">
         <img src="../assets/process-container-background-top.svg" alt="Process Container Background">
       </div>
     </div>
-    <div v-if="titlePosition === 'bottom'" >
+    <div v-if="titlePosition === 'center'">
+      <h2 class="evo-process-container__heading center">{{ title | translate }}</h2>
+    </div>
+    <div v-if="titlePosition === 'bottom'">
       <h2 class="evo-process-container__heading bottom">{{ title | translate }}</h2>
       <div class="evo-process-container__background bottom">
         <img src="../assets/process-container-background-bottom.svg" alt="Process Container Background">
@@ -16,10 +22,11 @@
          v-if="processStepGroups"
          v-bind:class="{ top: titlePosition === 'top', bottom: titlePosition === 'bottom' }">
       <process-step-group
-          v-for="stepGroups in processStepGroups"
+          v-for="(stepGroups, index) in processStepGroups"
           :steps="stepGroups"
-          :step-type="process.type"
+          :step-type="stepType"
           :has-parallel-steps="processHasParallelSteps"
+          :key="index"
           class="evo-process-steps__item">
       </process-step-group>
     </div>
@@ -49,7 +56,7 @@
     constructor() {
       super();
       this.processStepGroups = [];
-      this.stepType = StepType.Box;
+      this.stepType = StepType.Other;
       this.processHasParallelSteps = false;
     }
 
@@ -60,7 +67,7 @@
       }
 
       if (this.process.type === ProcessType.Core) {
-        this.stepType = StepType.Arrow;
+        this.stepType = StepType.Core;
       }
 
       // sort steps
@@ -91,14 +98,24 @@
     private created() {
       this.$log.debug('Process Container Component loaded.');
     }
+
+    private isCoreProcess(): boolean {
+      return this.stepType === StepType.Core;
+    }
   }
 </script>
 
 <style lang="scss" scoped>
+  @import '../styles/variables';
+
   .evo-process-container {
     display: block;
     position: relative;
     width: 100%;
+
+    &--is-core-process {
+      background-color: $c-process-bg;
+    }
 
     &__background {
       display: block;
@@ -128,9 +145,16 @@
       right: 0;
       text-align: center;
       margin: 0.5em 0;
+      color: white;
+      font-weight: 400;
 
       &.top {
         top: 0;
+      }
+
+      &.center {
+        color: #101010;
+        font-weight: 600;
       }
 
       &.bottom {
@@ -141,16 +165,16 @@
     &__list {
       display: block;
       padding-top: 4em;
-      padding-bottom: 4em;
+      padding-bottom: 2em;
 
       &.top {
-        padding-top: 5em;
+        padding-top: 3.5em;
         padding-bottom: 0;
       }
 
       &.bottom {
         padding-top: 0;
-        padding-bottom: 4.5em;
+        padding-bottom: 2.5em;
       }
     }
   }

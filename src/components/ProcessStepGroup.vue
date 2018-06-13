@@ -1,5 +1,6 @@
 <template>
-  <div class="evo-process-step-group">
+  <div class="evo-process-step-group"
+       v-bind:class="{ 'evo-process-step-group--has-constant-width': !isCoreProcessGroup() }">
     <process-step
         v-for="step in steps"
         v-if="step.showOnMap"
@@ -18,7 +19,7 @@
 <script lang="ts">
   import { Component, Prop, Vue } from 'vue-property-decorator';
   import ProcessStep from '@/components/ProcessStep.vue';
-  import { ProcessStep as Step } from '../contracts';
+  import { ProcessStep as Step, StepType } from '../contracts';
 
   @Component({
     name: 'process-step-group',
@@ -34,6 +35,10 @@
     private created() {
       this.$log.debug('Process Step Group Component loaded.');
     }
+
+    private isCoreProcessGroup(): boolean {
+      return this.stepType === StepType.Core;
+    }
   }
 </script>
 
@@ -42,6 +47,10 @@
     display: inline-block;
     margin-right: 0.5em;
     vertical-align: top;
+
+    &--has-constant-width {
+      width: 30%;
+    }
 
     &__step {
       display: block;

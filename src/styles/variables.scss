@@ -1,10 +1,10 @@
 // global color settings
 // those variables can be used to create themes
 $c-app-bg: white;
-$c-side-box: rgba(255, 122, 0, 0.31);
-$c-process-container: #c1d9ff;
-$c-process-step-bg: #fff4e3;
+$c-process-bg: #d8d9d8;
+$c-process-step-bg: #d8d9d8;
+$c-process-step-core-bg: #7f7f7f;
 $c-process-step-text: #252525;
 $c-process-step-title-bg: linear-gradient(-180deg, rgba(250,217,97,0.74) 50%, rgba(246, 157, 79, 0.6) 100%);
-$c-sub-process-trigger: green;
+$c-sub-process-trigger: #a6a6a6;
 $c-sub-process-bg: white;

@@ -2,7 +2,7 @@
   <div class="evo-process-step"
        v-bind:class="{
          'evo-process-step--is-stacked': isStackedStep(),
-         'evo-process-step--is-arrow': isArrowStyle(),
+         'evo-process-step--is-core-process': isCoreStep(),
          'evo-process-step--has-parallel-steps': parallelSteps,
          'evo-process-step--is-clickable': !!step.url,
          'evo-process-step--has-header': showHeader }"
@@ -26,28 +26,16 @@
     <transition appear>
       <div v-if="showSubProcess && step.subProcess"
            class="evo-process-step__sub-process"
-           v-bind:class="{
-            'evo-process-step__sub-process--asymmetric': isArrowStyle()
-            }"
            @mouseleave="showSubProcess = false">
         <sub-process-view :process="step.subProcess"></sub-process-view>
       </div>
     </transition>
-
-    <div class="evo-process-step__arrow evo-process-step-arrow"
-         v-if="isArrowStyle()"
-         v-bind:class="{
-            'evo-process-step-arrow--stacked': isStackedStep()
-         }">
-      <img src="../assets/arrow-tip-header.svg" class="evo-process-step-arrow__header" alt="Arrow tip header">
-      <img src="../assets/arrow-tip.svg" class="evo-process-step-arrow__tip" alt="Arrow tip">
-    </div>
   </div>
 </template>
 
 <script lang="ts">
   import { Component, Prop, Vue } from 'vue-property-decorator';
-  import { ProcessStep as Step } from '../contracts';
+  import { ProcessStep as Step, StepType } from '../contracts';
   import SubProcessView from '@/components/SubProcessView.vue';
   import ConfigurationMixin from '../utils/config.utils';
 
@@ -60,6 +48,9 @@
   })
   export default class ProcessStep extends Vue {
     @Prop() private step: Step;
+
+    // used to increase the individual step height, if there are stacked
+    // process steps within the process container
     @Prop() private parallelSteps: boolean;
     @Prop() private type: number;
 
@@ -78,10 +69,10 @@
     }
 
     /**
-     *
+     * Checks if the step is part of a core process.
      */
-    private isArrowStyle(): boolean {
-      return this.type === 1 && this.getConfigurationValue('USE_ARROW_STYLE') as boolean;
+    private isCoreStep(): boolean {
+      return this.type === StepType.Core;
     }
 
     /**
@@ -111,42 +102,52 @@
 <style lang="scss" scoped>
   @import '../styles/variables.scss';
 
-  $step-height-arrow: 10em;
-  $step-height-box: 5em;
+  $step-height-core: 10em;
+  $step-height-box: 2.5em;
 
   .evo-process-step {
     display: block;
     position: relative;
-    text-align: left;
     height: $step-height-box;
-    min-width: 12em;
-    max-width: 20em;
+    line-height: $step-height-box;
     background: $c-process-step-bg;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.25);
     margin-right: .5em;
     margin-bottom: 1em;
-    vertical-align: top;
     cursor: default;
+    border-radius: 5px;
+    border: 2px solid black;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+
+    &--is-core-process {
+      background: $c-process-step-core-bg;
+      color: #e2e2e2;
+      border-radius: 15px;
+      width: auto;
+      min-width: 12em;
+      max-width: 20em;
+    }
 
     &--has-parallel-steps {
-      height: $step-height-arrow - 2.5em;
+      height: $step-height-core - 2.5em;
+      line-height: $step-height-core - 2.5em;
 
       &.evo-process-step--has-header {
-        height: $step-height-arrow;
+        height: $step-height-core;
+        line-height: $step-height-core;
       }
     }
 
     &--is-stacked {
-      height: ($step-height-arrow - 2.5em) / 2 - 0.25em;
+      height: ($step-height-core - 2.5em) / 2 - 0.25em;
+      line-height: ($step-height-core - 2.5em) / 2 - 0.25em;
       overflow: visible;
       margin-bottom: 0.5em;
+      border-radius: 10px;
 
       &.evo-process-step--has-header {
-        height: $step-height-arrow / 2 - 0.25em;
-      }
-
-      &.evo-process-step--is-arrow {
-        margin-right: 2.5em;
+        height: $step-height-core / 2 - 0.25em;
       }
     }
 
@@ -154,19 +155,7 @@
       cursor: pointer;
     }
 
-    &--is-arrow {
-      margin-right: 4em;
-    }
-
-    &__arrow {
-      position: absolute;
-      right: -3.2em;
-      top: 0;
-      bottom: -10px;
-    }
-
     &__body {
-      padding: 0.3em;
       font-size: 20px;
 
       &::after {
@@ -177,13 +166,13 @@
 
     &__sub-process-trigger {
       position: absolute;
-      width: 0;
-      height: 0;
+      height: 18px;
       bottom: 0;
       left: 0;
-      border-right: 16px solid transparent;
-      border-left: 16px solid $c-sub-process-trigger;
-      border-top: 16px solid transparent;
+      right: 0;
+      background-color: $c-sub-process-trigger;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
     }
 
     &__sub-process {
@@ -192,10 +181,7 @@
       left: -3em;
       right: -3em;
       z-index: 20;
-
-      &--asymmetric {
-        left: -2em;
-      }
+      color: black;
     }
 
     &-header {
@@ -225,31 +211,5 @@
         margin-top: 0.5em;
       }
     }
-
-    &-arrow {
-      &__tip {
-        display: block;
-        position: relative;
-        z-index: 0;
-        height: 144px;
-      }
-
-      &__header {
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 10;
-      }
-
-      &--stacked {
-        right: -1.55em;
-
-        .evo-process-step-arrow__tip {
-          height: 70px;
-        }
-      }
-    }
-
   }
 </style>

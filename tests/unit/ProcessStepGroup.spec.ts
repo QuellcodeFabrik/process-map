@@ -12,7 +12,7 @@ describe('ProcessStepGroup component', () => {
     url: 'http://www.google.com',
     showOnMap: true
   }];
-  const stepType = StepType.Box;
+  const stepType = StepType.Other;
   const hasParallelSteps = false;
   const $log = {
     debug: () => { /* mock */ },
