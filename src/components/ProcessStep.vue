@@ -157,6 +157,8 @@
 
     &__body {
       font-size: 20px;
+      white-space: nowrap;
+      overflow: hidden;
 
       &::after {
         content: ' ';

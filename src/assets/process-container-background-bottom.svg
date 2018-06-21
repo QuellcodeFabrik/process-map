@@ -1,8 +1,7 @@
-
-<svg width="1024px" height="167px" viewBox="0 0 1024 167" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" fill-opacity="1">
-        <g id="Desktop" transform="translate(0.000000, -1.000000)" fill="#c01a00">
-            <path d="M1024,139.442569 C929.874028,144.733418 759.374028,154.248753 512.5,167.988576 C264.748697,154.251701 93.9153632,144.737231 -1.16529009e-12,139.445167 L0,1 L1024,1 L1024,139.442569 Z" id="Combined-Shape" transform="translate(512.000000, 84.494288) scale(1, -1) translate(-512.000000, -84.494288) "></path>
+<svg width="1021px" height="38px" viewBox="0 0 1021 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-19.000000, -500.000000)" fill="#C01A00">
+            <path d="M19.1037069,499.988711 L1040.24512,499.988711 C911.628064,509.456434 741.379691,521.958316 529.5,537.494355 C317.807973,521.949503 147.675876,509.447622 19.1037069,499.988711 Z" id="Combined-Shape" transform="translate(529.674413, 518.741533) scale(1, -1) translate(-529.674413, -518.741533) "></path>
         </g>
     </g>
 </svg>

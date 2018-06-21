@@ -5,18 +5,13 @@
        }">
     <div v-if="titlePosition === 'top'">
       <h2 class="evo-process-container__heading top">{{ title | translate }}</h2>
-      <div class="evo-process-container__background top">
-        <img src="../assets/process-container-background-top.svg" alt="Process Container Background">
-      </div>
     </div>
     <div v-if="titlePosition === 'center'">
       <h2 class="evo-process-container__heading center">{{ title | translate }}</h2>
     </div>
-    <div v-if="titlePosition === 'bottom'">
-      <h2 class="evo-process-container__heading bottom">{{ title | translate }}</h2>
-      <div class="evo-process-container__background bottom">
-        <img src="../assets/process-container-background-bottom.svg" alt="Process Container Background">
-      </div>
+    <div class="evo-process-container__background bottom"
+         v-if="titlePosition === 'bottom'">
+      <img src="../assets/process-container-background-bottom.svg" alt="Process Container Background">
     </div>
     <div class="evo-process-container__list"
          v-if="processStepGroups"
@@ -29,6 +24,13 @@
           :key="index"
           class="evo-process-steps__item">
       </process-step-group>
+    </div>
+    <div v-if="titlePosition === 'bottom'">
+      <h2 class="evo-process-container__heading bottom">{{ title | translate }}</h2>
+    </div>
+    <div class="evo-process-container__background top"
+         v-if="titlePosition === 'top'">
+      <img src="../assets/process-container-background-top.svg" alt="Process Container Background">
     </div>
   </div>
 </template>
@@ -115,20 +117,35 @@
 
     &--is-core-process {
       background-color: $c-process-bg;
+
+      .evo-process-container__list {
+        background-color: transparent;
+      }
     }
 
     &__background {
       display: block;
-      position: absolute;
-      left: 0;
-      right: 0;
 
       &.top {
-        top: 0;
+        img {
+          margin-top: -1px;
+          vertical-align: top;
+
+          @media screen and (min-width: 1280px) {
+            margin-top: -2px;
+          }
+        }
       }
 
       &.bottom {
-        bottom: 0;
+        img {
+          margin-bottom: -1px;
+          vertical-align: bottom;
+
+          @media screen and (min-width: 1280px) {
+            margin-bottom: -2px;
+          }
+        }
       }
 
       img {
@@ -166,6 +183,7 @@
       display: block;
       padding-top: 4em;
       padding-bottom: 2em;
+      background-color: #C01A00;
 
       &.top {
         padding-top: 3.5em;
@@ -173,7 +191,7 @@
       }
 
       &.bottom {
-        padding-top: 0;
+        padding-top: 2em;
         padding-bottom: 2.5em;
       }
     }

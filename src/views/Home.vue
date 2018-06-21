@@ -114,12 +114,12 @@ export default class Home extends Vue {
     &-item {
       display: block;
       position: relative;
-      width: 80%;
+      width: 85%;
       padding: 0;
       margin: 0 auto;
 
       &__core {
-        margin: 6em auto;
+        margin: 3em auto;
       }
     }
 
@@ -133,10 +133,16 @@ export default class Home extends Vue {
       background-color: white;
       font-weight: 600;
 
+      &>img {
+        height: 100%;
+        position: absolute;
+        left: 0;
+      }
+
        &>span {
         display: block;
         position: absolute;
-        left: -7em;
+        left: -6.5em;
         height: 1em;
         width: 15em;
         top: 50%;
@@ -159,10 +165,16 @@ export default class Home extends Vue {
       background-color: white;
       font-weight: 600;
 
+      &>img {
+        height: 100%;
+        position: absolute;
+        right: 0;
+      }
+
       &>span {
         display: block;
         position: absolute;
-        right: -6.3em;
+        right: -5.8em;
         top: 50%;
         height: 1em;
         width: 15em;
