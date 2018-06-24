@@ -168,7 +168,7 @@
 
     &__sub-process-trigger {
       position: absolute;
-      height: 18px;
+      height: 10px;
       bottom: 0;
       left: 0;
       right: 0;
