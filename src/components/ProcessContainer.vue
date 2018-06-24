@@ -80,11 +80,15 @@
       // sort steps into step groups
       this.process.steps
         .reduce((previousValue: ProcessStep[][], currentValue: ProcessStep): ProcessStep[][] => {
-          if (currentValue.showOnMap && currentValue.position.indexOf('.') > -1) {
-            if (previousValue.length && previousValue[previousValue.length - 1][0].position.indexOf('.') > -1) {
-              previousValue[previousValue.length - 1].push(currentValue);
-              return previousValue;
-            }
+          if (
+            currentValue.showOnMap &&
+            currentValue.position.indexOf('.') > -1 &&
+            previousValue.length &&
+            previousValue[previousValue.length - 1][0].position.indexOf('.') > -1 &&
+            previousValue[previousValue.length - 1][0].position.split('.')[0] === currentValue.position.split('.')[0]
+          ) {
+            previousValue[previousValue.length - 1].push(currentValue);
+            return previousValue;
           }
           previousValue.push([currentValue]);
           return previousValue;
