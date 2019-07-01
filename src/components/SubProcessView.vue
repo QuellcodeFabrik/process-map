@@ -2,10 +2,10 @@
   <div class="evo-sub-process-view" v-on:click="stopPropagation">
     <h3 class="evo-sub-process-view__title">{{ process.title }}</h3>
     <ul class="evo-sub-process-view__list">
-      <li v-for="step in process.steps"
-          v-if="step.showOnMap"
-          :key="step.id"
-          class="evo-sub-process-view__item">
+      <li
+        class="evo-sub-process-view__item"
+        v-for="step in visibleSteps"
+        :key="step.id">
         <a v-if="step.url" :href="step.url" target="_blank">{{ step.id + ' ' + step.title }}</a>
         <span v-if="!step.url">{{ step.id + ' ' + step.title }}</span>
       </li>
@@ -29,6 +29,10 @@
 
     public stopPropagation(event: Event) {
       event.stopPropagation();
+    }
+
+    get visibleSteps() {
+      return this.process.steps.filter((step: any) => !!step.showOnMap);
     }
   }
 </script>
