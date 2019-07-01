@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { shallow } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import { ProcessStep, StepType } from '@/contracts';
 import ProcessStepGroupComponent from '@/components/ProcessStepGroup.vue';
 
@@ -21,7 +21,7 @@ describe('ProcessStepGroup component', () => {
   };
 
   it('should not render any content of its own', () => {
-    const wrapper: any = shallow(ProcessStepGroupComponent, {
+    const wrapper: any = shallowMount(ProcessStepGroupComponent, {
       mocks: {
         $log
       },

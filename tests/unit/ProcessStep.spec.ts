@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { mount, shallow } from '@vue/test-utils';
+import { mount, shallowMount } from '@vue/test-utils';
 import { ProcessStep } from '@/contracts';
 import ProcessStepComponent from '@/components/ProcessStep.vue';
 
@@ -32,7 +32,7 @@ describe('ProcessStep component', () => {
   });
 
   it('should render the properties being passed from the parent', () => {
-    const wrapper = shallow(ProcessStepComponent, {
+    const wrapper = shallowMount(ProcessStepComponent, {
       mocks: {
         $log
       },

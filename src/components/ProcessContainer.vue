@@ -16,10 +16,11 @@
          v-if="processStepGroups"
          v-bind:class="{ top: titlePosition === 'top', bottom: titlePosition === 'bottom' }">
       <process-step-group
-          v-for="stepGroups in processStepGroups"
+          v-for="(stepGroups, index) in processStepGroups"
           :steps="stepGroups"
           :step-type="process.type"
           :has-parallel-steps="processHasParallelSteps"
+          :key="index"
           class="evo-process-steps__item">
       </process-step-group>
     </div>

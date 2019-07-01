@@ -1,12 +1,20 @@
 import Vue from 'vue';
 import App from './App.vue';
-import { Logger } from './utils/logger.utils';
+import VueLogger from 'vuejs-logger';
+
 import router from './utils/router.utils';
 import store from './utils/i18n.utils';
 
 Vue.config.productionTip = false;
 
-Logger.init();
+Vue.use(VueLogger, {
+  logLevel : 'info', // ['debug', 'info', 'warn', 'error', 'fatal']
+  stringifyArguments : false,
+  showLogLevel : false,
+  showMethodName : false,
+  separator: '|',
+  showConsoleColors: true
+} as any);
 
 new Vue({
   router,
@@ -20,5 +28,5 @@ new Vue({
     }
   },
 
-  render: (h) => h(App),
+  render: (h: any) => h(App),
 }).$mount('#app');

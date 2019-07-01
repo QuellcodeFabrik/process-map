@@ -7,12 +7,12 @@ declare module 'vuejs-logger' {
   import { PluginFunction } from 'vue';
 
   export default class VueLogger {
-    info (...args : any[]): void;
-    debug (...args : any[]): void;
-    warn (...args : any[]): void;
-    error (...args : any[]): void;
-    fatal (...args : any[]): void;
+    public info(...args: any[]): void;
+    public debug(...args: any[]): void;
+    public warn(...args: any[]): void;
+    public error(...args: any[]): void;
+    public fatal(...args: any[]): void;
 
-    static install: PluginFunction<never>;
+    public static install: PluginFunction<never>;
   }
 }

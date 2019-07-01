@@ -40,3 +40,7 @@ export interface ProcessStep {
   showOnMap: boolean;
   subProcess?: Process;
 }
+
+// hack to suppress warnings about exports not found
+export const ProcessStep = undefined;
+export const Process = undefined;
