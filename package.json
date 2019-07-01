@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "A Vue.js based web app that helps to visualise process maps on SharePoint.",
   "scripts": {
-    "serve": "vue-cli-service serve --open",
+    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"

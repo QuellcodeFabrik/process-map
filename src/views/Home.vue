@@ -39,31 +39,22 @@ import { Process, ProcessType } from '../contracts';
 import ProcessContainer from '@/components/ProcessContainer.vue';
 import ApiMixin from '../utils/api.utils';
 
-Component.registerHooks([
-  'beforeRouteEnter'
-]);
-
 @Component({
+  name: 'Home',
   components: {
     ProcessContainer
   },
   mixins: [ApiMixin]
 })
 export default class Home extends Vue {
-  private processDefinitions: Process[];
-  private loading: boolean;
+  private processDefinitions: Process[] = [];
+  private loading: boolean = true;
 
-  constructor() {
-    super();
+  protected created() {
+    this.$log.debug('Home::created()');
 
-    this.processDefinitions = [];
-    this.loading = true;
-  }
-
-  private created() {
     this.getProcessDefinition().then((result: Process[]) => {
-      this.$log.info('Result coming from API:');
-      this.$log.info(result);
+      this.$log.debug('Home::created() -> processes', result);
 
       // this.processDefinitions = result;
       result.forEach((process: Process) => {
@@ -73,10 +64,6 @@ export default class Home extends Vue {
     }).catch((err: Error) => {
       this.$log.error(err);
     });
-  }
-
-  public beforeRouteEnter(to: Route, from: Route, next: () => void) {
-    next();
   }
 
   /**
@@ -144,10 +131,7 @@ export default class Home extends Vue {
         width: 15em;
         top: 50%;
         text-align: center;
-        -webkit-transform: rotate(-90deg);
-        -moz-transform: rotate(-90deg);
-        -ms-transform: rotate(-90deg);
-        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
         filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
       }
     }
@@ -175,10 +159,7 @@ export default class Home extends Vue {
         height: 1em;
         width: 15em;
         text-align: center;
-        -webkit-transform: rotate(90deg);
-        -moz-transform: rotate(90deg);
-        -ms-transform: rotate(90deg);
-        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
         filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
       }
     }

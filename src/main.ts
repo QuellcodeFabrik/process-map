@@ -8,7 +8,7 @@ import store from './utils/i18n.utils';
 Vue.config.productionTip = false;
 
 Vue.use(VueLogger, {
-  logLevel : 'info', // ['debug', 'info', 'warn', 'error', 'fatal']
+  logLevel : 'debug', // ['debug', 'info', 'warn', 'error', 'fatal']
   stringifyArguments : false,
   showLogLevel : false,
   showMethodName : false,

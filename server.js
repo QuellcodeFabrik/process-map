@@ -555,7 +555,7 @@ const processDefinitionList = {
                 "StepId": "10.4.1",
                 "Title": "Outsourcing",
                 "StepLabel": "Beispiel Label",
-                "StepOrder": "4.2",
+                "StepOrder": "4.2.1",
                 "ReferenceUrl": {
                     "__metadata": {
                         "type": "SP.FieldUrlValue"
@@ -578,6 +578,44 @@ const processDefinitionList = {
                     ]
                 },
                 "ID": 15
+            },
+            {
+                "__metadata": {
+                    "id": "1acfdbdb-4e8d-42a9-aee7-938a0cdb6cbd",
+                    "uri": "https://evocomcloud.sharepoint.com/sites/DemoApps/qm/_api/Web/Lists(guid'5b44e241-a144-4d36-a127-9f34df7e400a')/Items(15)",
+                    "etag": "\"6\"",
+                    "type": "SP.Data.ProcessDefinitionListItem"
+                },
+                "Id": 150,
+                "ProcessId": "10",
+                "ProcessTitle": "Kernprozess",
+                "ProcessType": "Core",
+                "StepId": "10.4.2",
+                "Title": "Something else",
+                "StepLabel": "Noch etwas",
+                "StepOrder": "4.2.2",
+                "ReferenceUrl": {
+                    "__metadata": {
+                        "type": "SP.FieldUrlValue"
+                    },
+                    "Description": "Ergebnisseite",
+                    "Url": "https://evocomcloud.sharepoint.com/sites/DemoApps/qm/SitePages/Prozessansicht.aspx?ProcGUID=bb938ed0-7110-4d20-a561-bdea6cea5e55"
+                },
+                "ShowOnProcessMap": true,
+                "SubProcessId": null,
+                "Process": {
+                    "__metadata": {
+                        "type": "Collection(SP.Taxonomy.TaxonomyFieldValue)"
+                    },
+                    "results": [
+                        {
+                            "Label": "10.3.3 Something else",
+                            "TermGuid": "eeed6cf5-e650-434e-bed1-692110206e75",
+                            "WssId": 72
+                        }
+                    ]
+                },
+                "ID": 150
             },
             {
                 "__metadata": {

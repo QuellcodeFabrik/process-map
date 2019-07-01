@@ -9,18 +9,19 @@ declare var window: {
 
 declare module 'vue/types/vue' {
   interface Vue {
-    getConfigurationValue(param: string): string | boolean;
+    getConfigurationValue(param: string): string | boolean | number;
   }
 }
 
 @Component
 export default class ConfigurationMixin extends Vue {
 
-  private configuration: {[index: string]: string | boolean} = {
+  private configuration: {[index: string]: string | boolean | number} = {
+    LANGUAGE: 'de-DE',
     PROCESS_DEFINITION_LIST: 'https://evocomcloud.sharepoint.com/sites/DemoApps/qm/',
     SHOW_STEP_HEADER: true,
-    USE_ARROW_STYLE: true,
-    LANGUAGE: 'de-DE'
+    STEP_HEIGHT: 48,
+    USE_ARROW_STYLE: true
   };
 
   public created() {
@@ -36,9 +37,9 @@ export default class ConfigurationMixin extends Vue {
    * such definition use the locally defined parameter.
    *
    * @param {string} param
-   * @returns {string}
+   * @returns {string | boolean | number}
    */
-  public getConfigurationValue(param: string): string | boolean {
+  public getConfigurationValue(param: string): string | boolean | number {
     if (window.hasOwnProperty(param)) {
       return window[param];
     } else {

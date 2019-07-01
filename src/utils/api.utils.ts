@@ -10,12 +10,6 @@ declare var window: {
   new(): Window;
 };
 
-declare module 'vue/types/vue' {
-  interface Vue {
-    getProcessDefinition(): Promise<Process[]>;
-  }
-}
-
 @Component({
   mixins: [ConfigurationMixin]
 })

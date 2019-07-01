@@ -7,14 +7,15 @@
     <link rel="shortcut icon" href="<%= webpackConfig.output.publicPath %>favicon.ico">
     <title>Prozesslandkarte</title>
     <script>
+      window.SHOW_STEP_HEADER = false;
       window.USE_ARROW_STYLE = true;
+      window.STEP_HEIGHT = 50;
     </script>
   </head>
   <body>
     <noscript>
-      <strong>We're sorry but prozess-landkarte doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong>Ohne Javascript funktioniert die Prozesslandkarte leider nicht.</strong>
     </noscript>
     <div id="app"></div>
-    <!-- built files will be auto injected -->
   </body>
 </html>
