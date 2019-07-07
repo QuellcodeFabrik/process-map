@@ -13,6 +13,10 @@ window.SHOW_STEP_HEADER = true;
 //
 window.USE_ARROW_STYLE = true;
 
+// Die Höhe eines einfachen Prozessschritts kann hier festgelegt werden.
+// Der Wert ist eine Zahl und wird dann als Pixel gerendered.
+window.STEP_HEIGHT = 50;
+
 // Die Sprache kann hier festgesetzt werden.
 // Sonst wird die Sprache verwendet, die SharePoint vorgibt.
 //

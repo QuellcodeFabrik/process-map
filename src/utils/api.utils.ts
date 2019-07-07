@@ -22,7 +22,7 @@ export default class ApiMixin extends Vue {
 
     this.sharePointApi = axios.create({
       baseURL: window.hasOwnProperty('_spPageContextInfo') ?
-        this.getConfigurationValue('PROCESS_DEFINITION_LIST') as string : 'http://localhost:8000/',
+        this.getConfigurationValue('PROCESS_DEFINITION_LIST') as string : 'http://192.168.0.80:8080/',
       timeout: 30000,
       headers: {
         'Accept': 'application/json;odata=verbose',

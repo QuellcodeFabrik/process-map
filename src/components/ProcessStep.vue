@@ -15,19 +15,24 @@
       <span class="evo-process-step-header__label">{{ step.label }}</span>
     </div>
 
-    <div class="evo-process-step__body">
+    <div
+      class="evo-process-step__body"
+      ref="arrowBody">
       <span>{{ step.title }}</span>
     </div>
 
     <div
       class="evo-process-step__arrow-head evo-process-step-arrow-head"
-      v-if="isArrowStyle">
+      v-if="isArrowStyle"
+      ref="arrowHead">
       <img
         src="../assets/arrow-head-bg.svg"
-        class="evo-process-step-arrow-head__bg" />
+        class="evo-process-step-arrow-head__bg"
+        ref="arrowHeadBg" />
       <img
         src="../assets/arrow-head.svg"
-        class="evo-process-step-arrow-head__fg"/>
+        class="evo-process-step-arrow-head__fg"
+        ref="arrowHeadFg" />
     </div>
 
     <div
@@ -77,9 +82,17 @@
 
     protected mounted() {
       const stepElement = this.$refs.step as any;
+      const arrowHead = this.$refs.arrowHead as any;
+      const arrowHeadBg = this.$refs.arrowHeadBg as any;
+      const arrowHeadFg = this.$refs.arrowHeadFg as any;
 
       setTimeout(() => {
         const stepHeight = stepElement.clientHeight;
+
+        arrowHeadBg.style.height = `${stepHeight + 2}px`;
+        arrowHeadFg.style.height = `${stepHeight}px`;
+        arrowHeadBg.style.width = `${(stepHeight + 2) / 2}px`;
+        arrowHeadFg.style.width = `${stepHeight / 2}px`;
 
         if (this.isArrowStyle) {
           stepElement.style.marginRight = `${stepHeight / 2 + 10}px`;
@@ -139,7 +152,6 @@
       position: absolute;
       top: -1px;
       bottom: -1px;
-      height: calc(100% + 2px);
       left: 0;
     }
 
@@ -147,7 +159,6 @@
       position: absolute;
       top: 0;
       bottom: 0;
-      height: 100%;
       left: -1px;
     }
   }
