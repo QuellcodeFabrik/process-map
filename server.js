@@ -289,7 +289,7 @@ const processDefinitionList = {
                 "StepId": "10.4",
                 "Title": "Produktion",
                 "StepLabel": null,
-                "StepOrder": "4.1",
+                "StepOrder": "4.2",
                 "ReferenceUrl": {
                     "__metadata": {
                         "type": "SP.FieldUrlValue"
@@ -555,7 +555,7 @@ const processDefinitionList = {
                 "StepId": "10.4.1",
                 "Title": "Outsourcing",
                 "StepLabel": "Beispiel Label",
-                "StepOrder": "4.2.1",
+                "StepOrder": "4.1.1",
                 "ReferenceUrl": {
                     "__metadata": {
                         "type": "SP.FieldUrlValue"
@@ -593,7 +593,7 @@ const processDefinitionList = {
                 "StepId": "10.4.2",
                 "Title": "Something else",
                 "StepLabel": "Noch etwas",
-                "StepOrder": "4.2.2",
+                "StepOrder": "4.1.2",
                 "ReferenceUrl": {
                     "__metadata": {
                         "type": "SP.FieldUrlValue"

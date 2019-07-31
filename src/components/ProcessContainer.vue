@@ -66,8 +66,8 @@
           // if the first two fragments of the number are unequal we can parse them as
           // float value and directly compare them
           // e.g. 2.1 is smaller than 2.5 is bigger than 1
-          if (aFragments.slice(0, 1).join('.') !== bFragments.slice(0, 1).join('.')) {
-            return parseFloat(aFragments.slice(0, 1).join('.')) - parseFloat(bFragments.slice(0, 1).join('.'));
+          if (aFragments.slice(0, 2).join('.') !== bFragments.slice(0, 2).join('.')) {
+            return parseFloat(aFragments.slice(0, 2).join('.')) - parseFloat(bFragments.slice(0, 2).join('.'));
           }
 
           // only sort those numbers by the third fragment

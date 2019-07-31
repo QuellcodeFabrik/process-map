@@ -89,10 +89,12 @@
       setTimeout(() => {
         const stepHeight = stepElement.clientHeight;
 
-        arrowHeadBg.style.height = `${stepHeight + 2}px`;
-        arrowHeadFg.style.height = `${stepHeight}px`;
-        arrowHeadBg.style.width = `${(stepHeight + 2) / 2}px`;
-        arrowHeadFg.style.width = `${stepHeight / 2}px`;
+        if (arrowHead) {
+          arrowHeadBg.style.height = `${stepHeight + 2}px`;
+          arrowHeadFg.style.height = `${stepHeight}px`;
+          arrowHeadBg.style.width = `${(stepHeight + 2) / 2}px`;
+          arrowHeadFg.style.width = `${stepHeight / 2}px`;
+        }
 
         if (this.isArrowStyle) {
           stepElement.style.marginRight = `${stepHeight / 2 + 10}px`;
